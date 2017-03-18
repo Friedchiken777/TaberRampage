@@ -1,0 +1,362 @@
+fileFormatVersion: 2
+guid: 8cbd66d85ff3c284eafffaf138097e6b
+timeCreated: 1477971028
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: ankle_sillo
+    100002: BArm
+    100004: BClaw_Thumb
+    100006: BClawA
+    100008: BClawB
+    100010: BClawC
+    100012: BHand
+    100014: bicep_L
+    100016: BShin
+    100018: BShoulder
+    100020: BThigh
+    100022: F_Thigh
+    100024: FClaw_Thumb
+    100026: FClawA
+    100028: FClawB
+    100030: FClawC
+    100032: foot_L
+    100034: foot_sillo
+    100036: forearm_L
+    100038: FShin
+    100040: FShoulder
+    100042: head_fore
+    100044: head_side
+    100046: ikHandle1
+    100048: ikHandle2
+    100050: joint1
+    100052: joint10
+    100054: joint11
+    100056: joint12
+    100058: joint13
+    100060: joint2
+    100062: joint3
+    100064: joint4
+    100066: joint5
+    100068: joint6
+    100070: joint7
+    100072: joint8
+    100074: joint9
+    100076: neck_fore
+    100078: neck_side
+    100080: shin_L
+    100082: tail
+    100084: torso
+    100086: //RootNode
+    400000: ankle_sillo
+    400002: BArm
+    400004: BClaw_Thumb
+    400006: BClawA
+    400008: BClawB
+    400010: BClawC
+    400012: BHand
+    400014: bicep_L
+    400016: BShin
+    400018: BShoulder
+    400020: BThigh
+    400022: F_Thigh
+    400024: FClaw_Thumb
+    400026: FClawA
+    400028: FClawB
+    400030: FClawC
+    400032: foot_L
+    400034: foot_sillo
+    400036: forearm_L
+    400038: FShin
+    400040: FShoulder
+    400042: head_fore
+    400044: head_side
+    400046: ikHandle1
+    400048: ikHandle2
+    400050: joint1
+    400052: joint10
+    400054: joint11
+    400056: joint12
+    400058: joint13
+    400060: joint2
+    400062: joint3
+    400064: joint4
+    400066: joint5
+    400068: joint6
+    400070: joint7
+    400072: joint8
+    400074: joint9
+    400076: neck_fore
+    400078: neck_side
+    400080: shin_L
+    400082: tail
+    400084: torso
+    400086: //RootNode
+    2300000: ankle_sillo
+    2300002: BArm
+    2300004: BClaw_Thumb
+    2300006: BClawA
+    2300008: BClawB
+    2300010: BClawC
+    2300012: BHand
+    2300014: bicep_L
+    2300016: BShin
+    2300018: BShoulder
+    2300020: BThigh
+    2300022: F_Thigh
+    2300024: FClaw_Thumb
+    2300026: FClawA
+    2300028: FClawB
+    2300030: FClawC
+    2300032: foot_L
+    2300034: foot_sillo
+    2300036: forearm_L
+    2300038: FShin
+    2300040: FShoulder
+    2300042: head_fore
+    2300044: head_side
+    2300046: neck_fore
+    2300048: neck_side
+    2300050: shin_L
+    2300052: tail
+    2300054: torso
+    3300000: ankle_sillo
+    3300002: BArm
+    3300004: BClaw_Thumb
+    3300006: BClawA
+    3300008: BClawB
+    3300010: BClawC
+    3300012: BHand
+    3300014: bicep_L
+    3300016: BShin
+    3300018: BShoulder
+    3300020: BThigh
+    3300022: F_Thigh
+    3300024: FClaw_Thumb
+    3300026: FClawA
+    3300028: FClawB
+    3300030: FClawC
+    3300032: foot_L
+    3300034: foot_sillo
+    3300036: forearm_L
+    3300038: FShin
+    3300040: FShoulder
+    3300042: head_fore
+    3300044: head_side
+    3300046: neck_fore
+    3300048: neck_side
+    3300050: shin_L
+    3300052: tail
+    3300054: torso
+    4300000: BShin
+    4300002: BThigh
+    4300004: FShin
+    4300006: F_Thigh
+    4300008: torso
+    4300010: neck_side
+    4300012: head_side
+    4300014: neck_fore
+    4300016: head_fore
+    4300018: FShoulder
+    4300020: bicep_L
+    4300022: forearm_L
+    4300024: FClawA
+    4300026: FClawB
+    4300028: FClawC
+    4300030: FClaw_Thumb
+    4300032: tail
+    4300034: BShoulder
+    4300036: BArm
+    4300038: BHand
+    4300040: BClawA
+    4300042: BClawB
+    4300044: BClawC
+    4300046: BClaw_Thumb
+    4300048: ankle_sillo
+    4300050: foot_sillo
+    4300052: shin_L
+    4300054: foot_L
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 80
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ikHandle1
+        weight: 1
+      - path: ikHandle2
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint2/BThigh
+        weight: 1
+      - path: joint1/joint2/joint3
+        weight: 1
+      - path: joint1/joint2/joint3/BShin
+        weight: 1
+      - path: joint1/joint2/joint3/joint4
+        weight: 1
+      - path: joint1/joint5
+        weight: 1
+      - path: joint1/joint5/F_Thigh
+        weight: 1
+      - path: joint1/joint5/joint6
+        weight: 1
+      - path: joint1/joint5/joint6/FShin
+        weight: 1
+      - path: joint1/joint5/joint6/joint7
+        weight: 1
+      - path: joint1/torso
+        weight: 1
+      - path: joint1/torso/BShoulder
+        weight: 1
+      - path: joint1/torso/BShoulder/BArm
+        weight: 1
+      - path: joint1/torso/BShoulder/BArm/BHand
+        weight: 1
+      - path: joint1/torso/BShoulder/BArm/BHand/BClaw_Thumb
+        weight: 1
+      - path: joint1/torso/BShoulder/BArm/BHand/BClawA
+        weight: 1
+      - path: joint1/torso/BShoulder/BArm/BHand/BClawB
+        weight: 1
+      - path: joint1/torso/BShoulder/BArm/BHand/BClawC
+        weight: 1
+      - path: joint1/torso/FShoulder
+        weight: 1
+      - path: joint1/torso/FShoulder/bicep_L
+        weight: 1
+      - path: joint1/torso/FShoulder/bicep_L/forearm_L
+        weight: 1
+      - path: joint1/torso/FShoulder/bicep_L/forearm_L/FClaw_Thumb
+        weight: 1
+      - path: joint1/torso/FShoulder/bicep_L/forearm_L/FClawA
+        weight: 1
+      - path: joint1/torso/FShoulder/bicep_L/forearm_L/FClawB
+        weight: 1
+      - path: joint1/torso/FShoulder/bicep_L/forearm_L/FClawC
+        weight: 1
+      - path: joint1/torso/neck_fore
+        weight: 1
+      - path: joint1/torso/neck_fore/head_fore
+        weight: 1
+      - path: joint1/torso/neck_side
+        weight: 1
+      - path: joint1/torso/neck_side/head_side
+        weight: 1
+      - path: joint1/torso/tail
+        weight: 1
+      - path: joint8
+        weight: 1
+      - path: joint8/foot_sillo
+        weight: 1
+      - path: joint8/joint9
+        weight: 1
+      - path: joint8/joint9/ankle_sillo
+        weight: 1
+      - path: joint8/joint9/joint10
+        weight: 1
+      - path: joint11
+        weight: 1
+      - path: joint11/foot_L
+        weight: 1
+      - path: joint11/joint12
+        weight: 1
+      - path: joint11/joint12/joint13
+        weight: 1
+      - path: joint11/joint12/shin_L
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
