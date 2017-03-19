@@ -39,43 +39,43 @@ public class AnimationSetter : MonoBehaviour
 
     void Update()
     {
-        if (!attacking)
+        if (moving && (state == MonsterState.GroundWalk || state == MonsterState.RoofWalk))
         {
-            if (moving && (state == MonsterState.GroundWalk || state == MonsterState.RoofWalk))
+            currentIndex = 1;
+        }
+        else if (state == MonsterState.Climb)
+        {
+            if (moving)
             {
-                currentIndex = 1;
-            }
-            else if (state == MonsterState.Climb)
-            {
-                if (moving)
-                {
-                    currentIndex = 2;
-                }
-                else
-                {
-                    currentIndex = 3;
-                }
-            }
-            else if (state == MonsterState.Fall)
-            {
-                currentIndex = 4;
-            }
-            else if (state == MonsterState.Dash)
-            {
-                currentIndex = 5;
-            }
-            else if (state == MonsterState.Stun)
-            {
-                currentIndex = 6;
-            }
-            else if (state == MonsterState.Attack)
-            {
-                currentIndex = 7;
+                currentIndex = 2;
             }
             else
             {
-                currentIndex = 0;
+                currentIndex = 3;
             }
+        }
+        else if (state == MonsterState.Fall)
+        {
+            currentIndex = 4;
+        }
+        else if (state == MonsterState.Dash)
+        {
+            currentIndex = 5;
+        }
+        else if (state == MonsterState.Stun)
+        {
+            currentIndex = 6;
+        }
+        else if (state == MonsterState.Attack)
+        {
+            currentIndex = 7;
+        }
+        else
+        {
+            currentIndex = 0;
+        }
+        if (!attacking)
+        {
             SetAnimation();
         }
     }
@@ -95,7 +95,11 @@ public class AnimationSetter : MonoBehaviour
     {
         if ((a[currentIndex].BottomHalf == null && a[lastIndex].BottomHalf == null) || a[currentIndex].SwapTop || a[lastIndex].SwapTop)
         {
-
+            print((a[currentIndex].BottomHalf == null) + " && " + (a[lastIndex].BottomHalf == null) + " || " + (a[currentIndex].SwapTop) + " || " + (a[lastIndex].SwapTop));
+            if (a[currentIndex].BottomHalf == null && a[lastIndex].BottomHalf != null && a[currentIndex].SwapTop && !a[lastIndex].SwapTop)
+            {
+                a[lastIndex].BottomHalf.SetActive(false);
+            }
         }
         else {
             if (a[currentIndex].BottomHalf != null && !a[currentIndex].BottomHalf.activeSelf)
@@ -166,10 +170,11 @@ public class AnimationSetter : MonoBehaviour
         attacking = true;
         currentIndex = 7;        
         SetAnimation();
-        //a[currentIndex].TopHalf.GetComponent<Animator>().SetBool("Exit", true);
+
         yield return new WaitForSeconds(34f / 60f);//a[currentIndex].TopHalf.GetComponent<Animation>().clip.length);
-        //a[currentIndex].TopHalf.GetComponent<Animator>().SetBool("Exit", false);
+
         attacking = false;
+        SetAnimation();
     }
         
 }
