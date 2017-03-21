@@ -13,6 +13,12 @@ public class SettingsMenueButton : TouchButtonParrent
 
     bool paused = false;
 
+    private void Start()
+    {
+        Vector3 v3Pos = new Vector3(0.04f, 0.9f, 7.0f);
+        transform.position = Camera.main.ViewportToWorldPoint(v3Pos);
+    }
+
     protected override void Functionality()
     {
         if (paused)
