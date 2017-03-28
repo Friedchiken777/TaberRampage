@@ -82,6 +82,14 @@ public class AnimationSetter : MonoBehaviour
         {
             a[lastIndex].WholePrefab.SetActive(false);
             a[currentIndex].WholePrefab.SetActive(true);
+            if (a[currentIndex].Default != null)
+            {
+                a[currentIndex].Default.SetActive(true);
+            }
+            if (a[currentIndex].Attack != null)
+            {
+                a[currentIndex].Attack.SetActive(false);
+            }
             ParentToBuilding();
             lastIndex = currentIndex;            
         }
@@ -128,12 +136,24 @@ public class AnimationSetter : MonoBehaviour
 
     IEnumerator AttackAnimation()
     {
-        SetAnimation();        
-        a[currentIndex].Default.SetActive(false);
-        a[currentIndex].Attack.SetActive(true);
+        SetAnimation();
+        if (a[currentIndex].Default != null)
+        {
+            a[currentIndex].Default.SetActive(false);
+        }
+        if (a[currentIndex].Attack != null)
+        {
+            a[currentIndex].Attack.SetActive(true);
+        }
         yield return new WaitForSeconds(ATTACKDURATION);
-        a[currentIndex].Default.SetActive(true);
-        a[currentIndex].Attack.SetActive(false);
+        if (a[currentIndex].Default != null)
+        {
+            a[currentIndex].Default.SetActive(true);
+        }
+        if (a[currentIndex].Attack != null)
+        {
+            a[currentIndex].Attack.SetActive(false);
+        }
         SetAnimation();
     }
         
