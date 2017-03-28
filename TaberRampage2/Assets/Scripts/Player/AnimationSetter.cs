@@ -93,12 +93,12 @@ public class AnimationSetter : MonoBehaviour
 
     void SetAnimation()
     {
-        if ((a[currentIndex].BottomHalf == null && a[lastIndex].BottomHalf == null) || a[currentIndex].SwapTop || a[lastIndex].SwapTop)
-        {
-            print((a[currentIndex].BottomHalf == null) + " && " + (a[lastIndex].BottomHalf == null) + " || " + (a[currentIndex].SwapTop) + " || " + (a[lastIndex].SwapTop));
-            if (a[currentIndex].BottomHalf == null && a[lastIndex].BottomHalf != null && a[currentIndex].SwapTop && !a[lastIndex].SwapTop)
+        //print((a[currentIndex].BottomHalf == null) + " && " + (a[lastIndex].BottomHalf == null) + " || " + (a[currentIndex].SwapTop) + " || " + (a[lastIndex].SwapTop));
+        /*if ((a[currentIndex].BottomHalf == null && a[lastIndex].BottomHalf == null) || a[currentIndex].SwapTop || a[lastIndex].SwapTop)
+        {            
+            //if (a[currentIndex].BottomHalf == null && a[lastIndex].BottomHalf != null && a[currentIndex].SwapTop && !a[lastIndex].SwapTop)
             {
-                a[lastIndex].BottomHalf.SetActive(false);
+                //a[lastIndex].BottomHalf.SetActive(false);
             }
         }
         else {
@@ -114,14 +114,47 @@ public class AnimationSetter : MonoBehaviour
             {
                 a[lastIndex].BottomHalf.SetActive(false);
             }
-        }
+        }*/
+
+        
+
         if (!a[currentIndex].TopHalf.activeSelf)
         {
             a[lastIndex].TopHalf.SetActive(false);
             a[currentIndex].TopHalf.SetActive(true);
+
+            if (a[currentIndex].BottomHalf != null)
+            {
+                if (a[lastIndex].BottomHalf != null || a[currentIndex].SwapTop)
+                {
+                    a[lastIndex].BottomHalf.SetActive(false);
+                    a[currentIndex].BottomHalf.SetActive(true);
+                }
+                else if (a[lastIndex].BottomHalf == null)
+                {
+                    a[currentIndex].BottomHalf.SetActive(true);
+                }
+            }
+            else 
+            {
+                if (a[currentIndex].SwapTop)
+                {
+                    if (a[lastIndex].BottomHalf == null)
+                    {
+                        print("No bottom half?");
+                    }
+                }
+                else
+                {
+                    if (a[lastIndex].BottomHalf != null || a[currentIndex].SwapTop)
+                    {
+                        a[lastIndex].BottomHalf.SetActive(false);
+                    }
+                }
+            }
+
             ParentToBuilding();
             lastIndex = currentIndex;
-
         }
     }
 

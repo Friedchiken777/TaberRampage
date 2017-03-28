@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 61a531af2ec12ec43af3e66ee4ef23d9
-timeCreated: 1487638841
+guid: 3d5d15ffd6277fd4c99a7987b195bf25
+timeCreated: 1489888593
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -21,7 +21,8 @@ ModelImporter:
     100026: FShoulder
     100028: head
     100030: neck
-    100032: //RootNode
+    100032: torso
+    100034: //RootNode
     400000: BArm
     400002: BClaw_Thumb
     400004: BClawA
@@ -38,7 +39,8 @@ ModelImporter:
     400026: FShoulder
     400028: head
     400030: neck
-    400032: //RootNode
+    400032: torso
+    400034: //RootNode
     2300000: BArm
     2300002: BClaw_Thumb
     2300004: BClawA
@@ -55,7 +57,7 @@ ModelImporter:
     2300026: FShoulder
     2300028: head
     2300030: neck
-    2300032: //RootNode
+    2300032: torso
     3300000: BArm
     3300002: BClaw_Thumb
     3300004: BClawA
@@ -72,7 +74,7 @@ ModelImporter:
     3300026: FShoulder
     3300028: head
     3300030: neck
-    3300032: //RootNode
+    3300032: torso
     4300000: torso
     4300002: BShoulder
     4300004: BArm
@@ -140,41 +142,43 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: BShoulder
+      - path: torso
         weight: 1
-      - path: BShoulder/BArm
+      - path: torso/BShoulder
         weight: 1
-      - path: BShoulder/BArm/BHand
+      - path: torso/BShoulder/BArm
         weight: 1
-      - path: BShoulder/BArm/BHand/BClaw_Thumb
+      - path: torso/BShoulder/BArm/BHand
         weight: 1
-      - path: BShoulder/BArm/BHand/BClawA
+      - path: torso/BShoulder/BArm/BHand/BClaw_Thumb
         weight: 1
-      - path: BShoulder/BArm/BHand/BClawB
+      - path: torso/BShoulder/BArm/BHand/BClawA
         weight: 1
-      - path: BShoulder/BArm/BHand/BClawC
+      - path: torso/BShoulder/BArm/BHand/BClawB
         weight: 1
-      - path: FShoulder
+      - path: torso/BShoulder/BArm/BHand/BClawC
         weight: 1
-      - path: FShoulder/FArm
+      - path: torso/FShoulder
         weight: 1
-      - path: FShoulder/FArm/FHand
+      - path: torso/FShoulder/FArm
         weight: 1
-      - path: FShoulder/FArm/FHand/FClaw_Thumb
+      - path: torso/FShoulder/FArm/FHand
         weight: 1
-      - path: FShoulder/FArm/FHand/FClawA
+      - path: torso/FShoulder/FArm/FHand/FClaw_Thumb
         weight: 1
-      - path: FShoulder/FArm/FHand/FClawB
+      - path: torso/FShoulder/FArm/FHand/FClawA
         weight: 1
-      - path: FShoulder/FArm/FHand/FClawC
+      - path: torso/FShoulder/FArm/FHand/FClawB
         weight: 1
-      - path: neck
+      - path: torso/FShoulder/FArm/FHand/FClawC
         weight: 1
-      - path: neck/head
+      - path: torso/neck
+        weight: 1
+      - path: torso/neck/head
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []
