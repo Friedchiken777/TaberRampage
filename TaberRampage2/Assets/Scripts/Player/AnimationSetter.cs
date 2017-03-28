@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class AnimationSetter : MonoBehaviour
 {
-    public GameObject[] animations;
+    const float ATTACKDURATION = 34f/60f;
     public CustomAnimations[] a;
     int currentIndex, lastIndex;
 
-    bool moving, attacking;
+    bool moving;
     public MonsterState state;
 
     public static AnimationSetter instance = null;
@@ -28,12 +28,15 @@ public class AnimationSetter : MonoBehaviour
         state = MonsterState.Nothing;
         for (int i = 1; i < a.Length; i++)
         {
-            //animations[i].SetActive(false);
-            a[i].TopHalf.SetActive(false);
-            if (a[i].BottomHalf != null)
+            if (a[i].Default != null)
             {
-                a[i].BottomHalf.SetActive(false);
+                a[i].Default.SetActive(true);
             }
+            if (a[i].Attack != null)
+            {
+                a[i].Attack.SetActive(false);
+            }
+            a[i].WholePrefab.SetActive(false);            
         }
 	}
 
@@ -66,105 +69,27 @@ public class AnimationSetter : MonoBehaviour
         {
             currentIndex = 6;
         }
-        else if (state == MonsterState.Attack)
-        {
-            currentIndex = 7;
-        }
         else
         {
             currentIndex = 0;
         }
-        if (!attacking)
-        {
-            SetAnimation();
-        }
+        SetAnimation();
     }
 
-    void SetAnimationOld()
+    void SetAnimation()
     {
-        if (!animations[currentIndex].activeSelf)
+        if (!a[currentIndex].WholePrefab.activeSelf)
         {
-            animations[lastIndex].SetActive(false);
-            animations[currentIndex].SetActive(true);
+            a[lastIndex].WholePrefab.SetActive(false);
+            a[currentIndex].WholePrefab.SetActive(true);
             ParentToBuilding();
             lastIndex = currentIndex;            
         }
     }
 
-    void SetAnimation()
-    {
-        //print((a[currentIndex].BottomHalf == null) + " && " + (a[lastIndex].BottomHalf == null) + " || " + (a[currentIndex].SwapTop) + " || " + (a[lastIndex].SwapTop));
-        /*if ((a[currentIndex].BottomHalf == null && a[lastIndex].BottomHalf == null) || a[currentIndex].SwapTop || a[lastIndex].SwapTop)
-        {            
-            //if (a[currentIndex].BottomHalf == null && a[lastIndex].BottomHalf != null && a[currentIndex].SwapTop && !a[lastIndex].SwapTop)
-            {
-                //a[lastIndex].BottomHalf.SetActive(false);
-            }
-        }
-        else {
-            if (a[currentIndex].BottomHalf != null && !a[currentIndex].BottomHalf.activeSelf)
-            {
-                if (a[lastIndex].BottomHalf != null)
-                {
-                    a[lastIndex].BottomHalf.SetActive(false);
-                    a[currentIndex].BottomHalf.SetActive(true);
-                }
-            }
-            if (a[currentIndex].BottomHalf == null && a[lastIndex].BottomHalf.activeSelf)
-            {
-                a[lastIndex].BottomHalf.SetActive(false);
-            }
-        }*/
-
-        
-
-        if (!a[currentIndex].TopHalf.activeSelf)
-        {
-            a[lastIndex].TopHalf.SetActive(false);
-            a[currentIndex].TopHalf.SetActive(true);
-
-            if (a[currentIndex].BottomHalf != null)
-            {
-                if (a[lastIndex].BottomHalf != null || a[currentIndex].SwapTop)
-                {
-                    a[lastIndex].BottomHalf.SetActive(false);
-                    a[currentIndex].BottomHalf.SetActive(true);
-                }
-                else if (a[lastIndex].BottomHalf == null)
-                {
-                    a[currentIndex].BottomHalf.SetActive(true);
-                }
-            }
-            else 
-            {
-                if (a[currentIndex].SwapTop)
-                {
-                    if (a[lastIndex].BottomHalf == null)
-                    {
-                        print("No bottom half?");
-                    }
-                }
-                else
-                {
-                    if (a[lastIndex].BottomHalf != null || a[currentIndex].SwapTop)
-                    {
-                        a[lastIndex].BottomHalf.SetActive(false);
-                    }
-                }
-            }
-
-            ParentToBuilding();
-            lastIndex = currentIndex;
-        }
-    }
-
     public GameObject[] GetCurrentAnimationObject()
     {
-        if (a[currentIndex].BottomHalf != null)
-        {
-            return new GameObject[] { a[currentIndex].TopHalf, a[currentIndex].BottomHalf };
-        }
-        return new GameObject[] { a[currentIndex].TopHalf };
+        return new GameObject[] { a[currentIndex].WholePrefab };
     }
 
     void ParentToBuilding()
@@ -195,18 +120,20 @@ public class AnimationSetter : MonoBehaviour
 
     public void SetAttackState()
     {
-        StartCoroutine(AttackAnimation());
+        if (a[currentIndex].Attack != null)
+        {
+            StartCoroutine(AttackAnimation());
+        }
     }
 
     IEnumerator AttackAnimation()
     {
-        attacking = true;
-        currentIndex = 7;        
-        SetAnimation();
-
-        yield return new WaitForSeconds(34f / 60f);//a[currentIndex].TopHalf.GetComponent<Animation>().clip.length);
-
-        attacking = false;
+        SetAnimation();        
+        a[currentIndex].Default.SetActive(false);
+        a[currentIndex].Attack.SetActive(true);
+        yield return new WaitForSeconds(ATTACKDURATION);
+        a[currentIndex].Default.SetActive(true);
+        a[currentIndex].Attack.SetActive(false);
         SetAnimation();
     }
         
@@ -228,6 +155,5 @@ public enum MonsterState
 public class CustomAnimations
 {
     public string name;
-    public bool SwapTop;
-    public GameObject TopHalf, BottomHalf;
+    public GameObject WholePrefab, Default, Attack;
 }
