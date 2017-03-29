@@ -218,6 +218,7 @@ public class CitySpawnManager : MonoBehaviour
             //print(slightOffset);
             Vector3 foundationLocation = new Vector3(x - slightOffset, (groundmax.y + (CHUNKSIZE/2)), ground.transform.position.z);
             int floorplan = Random.Range(0, buildings.Count);
+            print(floorplan);
             GameObject foundation = Instantiate(buildings[floorplan], foundationLocation, ground.transform.rotation) as GameObject;
 
             for (int i = 1; i <= buildingWidth; i++)
