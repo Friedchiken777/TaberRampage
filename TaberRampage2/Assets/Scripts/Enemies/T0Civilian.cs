@@ -3,7 +3,9 @@ using System.Collections;
 
 public class T0Civilian : EnemyParentScript
 {
-    protected bool triggered = false;        
+    protected bool triggered = false;
+
+    public bool actualCivilian;       
 
     // Use this for initialization
     void Start ()

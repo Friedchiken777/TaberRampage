@@ -47,6 +47,8 @@ public class MonsterController : MonoBehaviour
 
     float ccHeight;
 
+    bool statNumbers;
+
     void Start ()
     {
         cc = this.GetComponent<CharacterController>();
@@ -63,6 +65,7 @@ public class MonsterController : MonoBehaviour
         turnAround = true;
         dashModifier = 1f;
         ccHeight = cc.height;
+        statNumbers = (StatisticsNumbers.instance != null);
 	}
 
 	void FixedUpdate ()
@@ -214,6 +217,10 @@ public class MonsterController : MonoBehaviour
                 dashTimer = 0;
                 transform.rotation = Quaternion.identity;                
                 dashFall = true;
+                if (statNumbers)
+                {
+                    StatisticsNumbers.instance.ModifyTotalDashesPerformed(1);
+                }
             }
         }
 
@@ -309,7 +316,7 @@ public class MonsterController : MonoBehaviour
 
     }
 
-    public void TakeDamage(bool stun)
+    /*public void TakeDamage(bool stun)
     {
         if (!ghostTouch)
         {
@@ -329,9 +336,9 @@ public class MonsterController : MonoBehaviour
                 StartCoroutine(Invincibility());
             }
         }
-    }
+    }*/
 
-    public void TakeDamage(float d, bool stun)
+    public void TakeDamage(float d = 1, bool stun = false)
     {
         if (!ghostTouch)
         {
@@ -349,6 +356,10 @@ public class MonsterController : MonoBehaviour
                     StunPlayerH(STUNTIME, 0);
                 }
                 StartCoroutine(Invincibility());
+            }
+            if (statNumbers)
+            {
+                StatisticsNumbers.instance.ModifyTotalHealthLost(d);
             }
         }
     }
@@ -383,7 +394,7 @@ public class MonsterController : MonoBehaviour
         //print("invincibility deactive");
     }
 
-    public void HealDamage()
+    /*public void HealDamage()
     {
         currentHealth++;
         if (currentHealth > maxHealth)
@@ -391,16 +402,25 @@ public class MonsterController : MonoBehaviour
             currentHealth = maxHealth;
         }
         GUIManager.instance.UpdateMosterHealthBar(currentHealth / maxHealth);
-    }
+    }*/
 
-    public void HealDamage(float d)
-    {
-        currentHealth += d;
-        if (currentHealth > maxHealth)
+    public void HealDamage(float d = 1)
+    {        
+        if (currentHealth < maxHealth)
+        {
+            currentHealth += d;
+            if (statNumbers)
+            {
+                StatisticsNumbers.instance.ModifyTotalHealthRecovered(d);
+            }
+            print(currentHealth);  
+        }
+        else
         {
             currentHealth = maxHealth;
         }
         GUIManager.instance.UpdateMosterHealthBar(currentHealth/maxHealth);
+        
     }
 
     public void SetMonsterTapped(bool b)

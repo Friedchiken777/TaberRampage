@@ -88,7 +88,7 @@ public class SniperEnemy : EnemyParentScript
                     if (hit.collider.gameObject.GetComponent<MonsterController>() != null)
                     {
                         print("Monster hit by Sniper");
-                        monster.TakeDamage(stunsPlayer);
+                        monster.TakeDamage(1 , stunsPlayer);
                     }
                 }
                 Reload();

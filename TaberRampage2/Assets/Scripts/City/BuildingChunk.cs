@@ -18,6 +18,8 @@ public class BuildingChunk : MonoBehaviour
     [SerializeField]
     NeighborList[] neighbors = new NeighborList[4];
     int timesNeigborsHit;
+    bool statNumbers;
+
     // Use this for initialization
     void Start ()
     {
@@ -35,6 +37,7 @@ public class BuildingChunk : MonoBehaviour
         neighbors[1].name = "West";
         neighbors[2].name = "North";
         neighbors[3].name = "South";
+        statNumbers = (StatisticsNumbers.instance != null);
     }
 	
 	// Update is called once per frame
@@ -98,6 +101,11 @@ public class BuildingChunk : MonoBehaviour
                         {
                             transform.GetComponentInChildren<SpriteRenderer>().sprite = transform.GetChild(0).GetComponent<BuildingChunk>().brokenS;
                         }
+                    }
+                    if (statNumbers)
+                    {
+                        StatisticsNumbers.instance.ModifyBuildingChunksDestroyed(1);
+                        statNumbers = false;
                     }
                 }
 

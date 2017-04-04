@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class CameraController : MonoBehaviour
 {
     const float YADJUST = 3;
+    const float DEFAULTORTHSIZE = 5;
+    const float CAMERAZOOMSPEEDTHRESH = 0.15f;
 
     List<ViewEffector> highNooners;
     bool noPlayers;
@@ -80,7 +82,7 @@ public class CameraController : MonoBehaviour
 
             Vector3 modifiedPos = new Vector3(centerX, centerY, transform.position.z);
 
-            transform.position = modifiedPos;
+            transform.position = modifiedPos;            
         }
     }
 
@@ -103,5 +105,10 @@ public class CameraController : MonoBehaviour
     public float GetYAdjustment()
     {
         return adjustedYAdjust;
+    }
+
+    public void ModifyOrthagraphicSize(float f)
+    {
+        this.GetComponent<Camera>().orthographicSize = DEFAULTORTHSIZE + f;
     }
 }

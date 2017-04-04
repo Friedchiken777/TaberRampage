@@ -10,6 +10,7 @@ public class AnimationSetter : MonoBehaviour
 
     bool moving;
     public MonsterState state;
+    bool thisIsMonsterPlayer;
 
     public static AnimationSetter instance = null;
 
@@ -25,6 +26,10 @@ public class AnimationSetter : MonoBehaviour
             Destroy(gameObject);
         }
         currentIndex = 0;
+        if (this.GetComponent<MonsterController>() != null)
+        {
+            thisIsMonsterPlayer = true;
+        }
         state = MonsterState.Nothing;
         for (int i = 1; i < a.Length; i++)
         {
@@ -41,6 +46,34 @@ public class AnimationSetter : MonoBehaviour
 	}
 
     void Update()
+    {
+        if (thisIsMonsterPlayer)
+        {
+            MonsterAnimationCheck();
+        }
+        SetAnimation();
+    }
+
+    void SetAnimation()
+    {
+        if (!a[currentIndex].WholePrefab.activeSelf)
+        {
+            a[lastIndex].WholePrefab.SetActive(false);
+            a[currentIndex].WholePrefab.SetActive(true);
+            if (a[currentIndex].Default != null)
+            {
+                a[currentIndex].Default.SetActive(true);
+            }
+            if (a[currentIndex].Attack != null)
+            {
+                a[currentIndex].Attack.SetActive(false);
+            }
+            ParentToBuilding();
+            lastIndex = currentIndex;            
+        }
+    }
+
+    void MonsterAnimationCheck()
     {
         if (moving && (state == MonsterState.GroundWalk || state == MonsterState.RoofWalk))
         {
@@ -72,26 +105,6 @@ public class AnimationSetter : MonoBehaviour
         else
         {
             currentIndex = 0;
-        }
-        SetAnimation();
-    }
-
-    void SetAnimation()
-    {
-        if (!a[currentIndex].WholePrefab.activeSelf)
-        {
-            a[lastIndex].WholePrefab.SetActive(false);
-            a[currentIndex].WholePrefab.SetActive(true);
-            if (a[currentIndex].Default != null)
-            {
-                a[currentIndex].Default.SetActive(true);
-            }
-            if (a[currentIndex].Attack != null)
-            {
-                a[currentIndex].Attack.SetActive(false);
-            }
-            ParentToBuilding();
-            lastIndex = currentIndex;            
         }
     }
 

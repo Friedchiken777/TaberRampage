@@ -8,19 +8,12 @@ public class SignChunk : MonoBehaviour
     public bool westSide;
     public bool stun;
     public float stunTime, knockback;
+    bool statNumbers;
 
-
-    // Use this for initialization
-    void Start ()
+    private void Start()
     {
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-	
-	}
+        statNumbers = (StatisticsNumbers.instance != null);
+    }
 
     void OnTriggerEnter(Collider col)
     {
@@ -31,6 +24,11 @@ public class SignChunk : MonoBehaviour
             {
                 col.GetComponent<MonsterController>().StunPlayerH(stunTime, 0);
                 Destroy(this.gameObject, stunTime / 2);
+                if (statNumbers)
+                {
+                    StatisticsNumbers.instance.ModifyEnvironmentObjectsDestroyed(1);
+                    statNumbers = false;
+                }
             }
             //AC
             else
@@ -51,11 +49,6 @@ public class SignChunk : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision col)
-    {
-        //never called...
-        print("he hitted me...");
-    }
 }
 
 public enum signType

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyParentScript : MonoBehaviour
 {
-    protected const float CLEANUPDISTANCE = 30;
+    protected const float CLEANUPDISTANCE = 60;
     protected const float SHOTSPREAD = 1f;
 
     [SerializeField]
@@ -29,6 +29,8 @@ public class EnemyParentScript : MonoBehaviour
     protected bool attacked;
     protected float attackTimer;
 
+    protected bool statNumbers;
+
     public EnemySpawnTypes spawnType;
 
     // Use this for initialization
@@ -36,7 +38,9 @@ public class EnemyParentScript : MonoBehaviour
     {
         monster = GameObject.FindObjectOfType<MonsterController>();
         currentHealth = maxHealth;
+        statNumbers = (StatisticsNumbers.instance != null);
     }
+
 	
 	// Update is called once per frame
 	protected void Update ()
@@ -77,6 +81,18 @@ public class EnemyParentScript : MonoBehaviour
                 {
                     col.GetComponent<MonsterController>().HealDamage(foodValue);
                     TerrorManager.instance.AddTerror(terrorValue);
+                    if (statNumbers)
+                    {
+                        StatisticsNumbers.instance.ModifyTotalPeopleEaten(1);
+                        if (this.GetComponent<T0Civilian>() != null)
+                        {
+                            if (this.GetComponent<T0Civilian>().actualCivilian)
+                            {
+                                StatisticsNumbers.instance.ModifyCivilliansEaten(1);
+                            }
+                        }
+                        statNumbers = false;
+                    }
                     Destroy(this.gameObject);
                 }
             }

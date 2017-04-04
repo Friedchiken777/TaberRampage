@@ -16,7 +16,8 @@ public class Building : MonoBehaviour
 
     float fallRate;
 
-    int died;
+    bool died;
+    bool statNumbers;
     //Requires file structure bases on objects name
     //Each building should have and empty gameobject with this script in the foundations folder
     //There should also be a corresponding folder structure with the correct name that has all building chunk prefabs
@@ -48,7 +49,12 @@ public class Building : MonoBehaviour
             //Debug.Log("prefab found: " + g.name);
             signKit.Add(g);
         }
-        died = 0;
+        died = false;
+    }
+
+    private void Start()
+    {
+        statNumbers = (StatisticsNumbers.instance != null);
     }
 
     void Update()
@@ -61,16 +67,17 @@ public class Building : MonoBehaviour
 
     void BuildingDeath()
     {
-        if (died < 2)
+        if (!died)
         {
-            died++;
-        }        
-        if (died == 1)
-        {
+            died = true;
             TerrorManager.instance.AddTerror(maxHealth * TERRORBONUSMULTIPLIER);
-            Destroy(this.gameObject, TIMETODEATH);
+            Destroy(this.gameObject, TIMETODEATH);            
+            if (statNumbers)
+            {
+                StatisticsNumbers.instance.ModifyBuildingsDestroyed(1);
+                statNumbers = false;
+            }
         }
-        transform.position = new Vector3(transform.position.x, transform.position.y - Time.deltaTime, transform.position.z);
-        
+        transform.position = new Vector3(transform.position.x, transform.position.y - Time.deltaTime, transform.position.z);        
     }
 }
