@@ -12,8 +12,21 @@ public class StatisticsNumbers : MonoBehaviour
           civilliansEaten,           
           totalHealthRecovered, 
           totalHealthLost,
-          totalDashesPerformed;
+          totalDashesPerformed,
+          totalHorizontalDistanceTraveled,
+          totalVerticalDistanceTraveled,
+          totalDistanceTraveledFromStart,
+          totalBuildingsGenerated,
+          highestMultiplier,
+          averageMultiplier,
+          gameTime;
 
+    [SerializeField][ReadOnly]
+    float[] multiplierTimes;
+
+    int currentMultiplier;
+    Vector3 playerPosition; 
+    float lastMoveX, lastMoveY;
 
     public static StatisticsNumbers instance;
 
@@ -27,6 +40,14 @@ public class StatisticsNumbers : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        gameTime = Mathf.Epsilon;
+        multiplierTimes = new float[9];
+    }
+
+    private void Update()
+    {
+        multiplierTimes[currentMultiplier] += Time.deltaTime;
+        gameTime += Time.deltaTime;
     }
 
     #region Getters
@@ -69,6 +90,36 @@ public class StatisticsNumbers : MonoBehaviour
     {
         return totalDashesPerformed;
     }
+
+    public float GetTotalHorizontalDistanceTraveled()
+    {
+        return totalHorizontalDistanceTraveled;
+    }
+
+    public float GetTotalVerticalDistanceTraveled()
+    {
+        return totalVerticalDistanceTraveled;
+    }
+
+    public float GetTotalDistanceTraveledFromStart()
+    {
+        return totalDistanceTraveledFromStart;
+    }
+
+    public float GetTotalBuildingsGenerated()
+    {
+        return totalBuildingsGenerated;
+    }
+
+    public float GetHighestMultiplier()
+    {
+        return highestMultiplier;
+    }
+
+    public float GetAverageMultiplier()
+    {
+        return averageMultiplier;
+    }
     #endregion
 
     #region Modifiers
@@ -107,10 +158,55 @@ public class StatisticsNumbers : MonoBehaviour
         totalHealthLost += f;
     }
 
-    public void ModifyTotalDashesPerformed(float f)
+    public void ModifyTotalDashesPerformed(float f = 1)
     {
         totalDashesPerformed += f;
     }
+
+    public void ModifyTotalDistanceTraveled(Vector3 f)
+    {
+        totalHorizontalDistanceTraveled += Mathf.Abs(f.x - lastMoveX);
+
+        if (f.y > lastMoveY)
+        {
+            totalVerticalDistanceTraveled += f.y - lastMoveY;
+        }
+
+        totalDistanceTraveledFromStart = playerPosition.x + f.x;
+
+        lastMoveX = f.x;
+        lastMoveY = f.y;
+    }
+
+    public void ModifyTotalBuildingsGenerated(float f = 1)
+    {
+        totalBuildingsGenerated += f;
+    }
+
+    public void ModifyHighestMultiplier(int f)
+    {
+        if (f > highestMultiplier)
+        {
+            highestMultiplier = f;
+        }
+        currentMultiplier = f;
+    }
+
+    public void ModifyAverageMultiplier(float f)
+    {
+        float tempSummer = 0;
+        float gameTimeSnapShot = gameTime;
+        for (int i = 1; i < multiplierTimes.Length; i++)
+        {
+            tempSummer += (i * multiplierTimes[i]);
+        }
+        averageMultiplier = tempSummer / gameTimeSnapShot;
+    }
     #endregion
+
+    public void SetPlayerPosition(Vector3 p)
+    {
+        playerPosition = p;
+    }
 }
 

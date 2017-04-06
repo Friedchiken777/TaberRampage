@@ -30,6 +30,8 @@ public class CitySpawnManager : MonoBehaviour
 
     GameObject newestChunk, lowerFloor;
 
+    bool statNumbers;
+
     public static CitySpawnManager instance;
 
     void Awake()
@@ -77,6 +79,10 @@ public class CitySpawnManager : MonoBehaviour
         {
             buildings.Add(g);
         }
+    }
+    private void Start()
+    {
+        statNumbers = (StatisticsNumbers.instance != null);
     }
 
     void FixedUpdate()
@@ -220,6 +226,10 @@ public class CitySpawnManager : MonoBehaviour
             int floorplan = Random.Range(0, buildings.Count);
             //print(floorplan);
             GameObject foundation = Instantiate(buildings[floorplan], foundationLocation, ground.transform.rotation) as GameObject;
+            if (statNumbers)
+            {
+                StatisticsNumbers.instance.ModifyTotalBuildingsGenerated();
+            }
 
             for (int i = 1; i <= buildingWidth; i++)
             {

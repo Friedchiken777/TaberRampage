@@ -23,6 +23,7 @@ public class TerrorManager : MonoBehaviour
 
     public int currentTerrorLevel;                                      //current terror value
     int terrorLoss;
+    bool statNumbers;
     public static TerrorLevel terrorLevel;
 
     // Use this for initialization
@@ -36,14 +37,16 @@ public class TerrorManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        currentTerrorValue = TERRORLEVEL1/2;
+        
         previousTerrorValue = 0;
         nextTerrorValue = TERRORLEVEL1;
         terrorLevel = TerrorLevel.T0;
         terrorMultiplier = 1;
         terrorLoss = 1;
         UpdateTerrorLevel();
+        statNumbers = (StatisticsNumbers.instance != null);
+        UpdateTerrorValue();
+        
     }
 	
 	// Update is called once per frame
@@ -124,7 +127,7 @@ public class TerrorManager : MonoBehaviour
             terrorMultiplier = 1;
             previousTerrorValue = 0;
             nextTerrorValue = TERRORLEVEL1;
-            currentTerrorValue = (nextTerrorValue + previousTerrorValue) / 2;
+            UpdateTerrorValue();
             print("T0");
         }
         else if (currentTerrorValue >= TERRORLEVEL1 && currentTerrorValue < TERRORLEVEL2 && terrorLevel != TerrorLevel.T1)
@@ -134,7 +137,7 @@ public class TerrorManager : MonoBehaviour
             terrorMultiplier = 2;
             previousTerrorValue = TERRORLEVEL1;
             nextTerrorValue = TERRORLEVEL2;
-            currentTerrorValue = (nextTerrorValue + previousTerrorValue) / 2;
+            UpdateTerrorValue();
             print("T1");
         }
         else if (currentTerrorValue >= TERRORLEVEL2 && currentTerrorValue < TERRORLEVEL3 && terrorLevel != TerrorLevel.T2)
@@ -144,7 +147,7 @@ public class TerrorManager : MonoBehaviour
             terrorMultiplier = 3;
             previousTerrorValue = TERRORLEVEL2;
             nextTerrorValue = TERRORLEVEL3;
-            currentTerrorValue = (nextTerrorValue + previousTerrorValue) / 2;
+            UpdateTerrorValue();
             print("T2");
         }
         else if (currentTerrorValue >= TERRORLEVEL3 && currentTerrorValue < TERRORLEVEL4 && terrorLevel != TerrorLevel.T3)
@@ -154,7 +157,7 @@ public class TerrorManager : MonoBehaviour
             terrorMultiplier = 4;
             previousTerrorValue = TERRORLEVEL3;
             nextTerrorValue = TERRORLEVEL4;
-            currentTerrorValue = (nextTerrorValue + previousTerrorValue) / 2;
+            UpdateTerrorValue();
             print("T3");
         }
         else if (currentTerrorValue >= TERRORLEVEL4 && currentTerrorValue < TERRORLEVEL5 && terrorLevel != TerrorLevel.T4)
@@ -164,7 +167,7 @@ public class TerrorManager : MonoBehaviour
             terrorMultiplier = 5;
             previousTerrorValue = TERRORLEVEL4;
             nextTerrorValue = TERRORLEVEL5;
-            currentTerrorValue = (nextTerrorValue + previousTerrorValue) / 2;
+            UpdateTerrorValue();
             print("T4");
         }
         else if (currentTerrorValue >= TERRORLEVEL5 && currentTerrorValue < TERRORLEVEL6 && terrorLevel != TerrorLevel.T5)
@@ -174,7 +177,7 @@ public class TerrorManager : MonoBehaviour
             terrorMultiplier = 6;
             previousTerrorValue = TERRORLEVEL5;
             nextTerrorValue = TERRORLEVEL6;
-            currentTerrorValue = (nextTerrorValue + previousTerrorValue) / 2;
+            UpdateTerrorValue();
             print("T5");
         }
         else if (currentTerrorValue >= TERRORLEVEL6 && currentTerrorValue < TERRORLEVEL7 && terrorLevel != TerrorLevel.T6)
@@ -184,7 +187,7 @@ public class TerrorManager : MonoBehaviour
             terrorMultiplier = 7;
             previousTerrorValue = TERRORLEVEL6;
             nextTerrorValue = TERRORLEVEL7;
-            currentTerrorValue = (nextTerrorValue + previousTerrorValue) / 2;
+            UpdateTerrorValue();
             print("T6");
         }
         else if (currentTerrorValue >= TERRORLEVEL7 && currentTerrorValue < TERRORLEVEL8 && terrorLevel != TerrorLevel.T7)
@@ -194,12 +197,25 @@ public class TerrorManager : MonoBehaviour
             terrorMultiplier = 8;
             previousTerrorValue = TERRORLEVEL7;
             nextTerrorValue = TERRORLEVEL8;
-            currentTerrorValue = (nextTerrorValue + previousTerrorValue) / 2;
+            UpdateTerrorValue();
             print("T7");
         }
-        GUIManager.instance.UpdateScore(playerScore);
-        GUIManager.instance.UpdateTerrorMeterLevelIndicator(terrorMultiplier - 1);
+        GUIManager.instance.UpdateScore(playerScore);        
         GUIManager.instance.UpdateTerrorMeterIntensityGuageArrow((currentTerrorValue - previousTerrorValue) / (nextTerrorValue - previousTerrorValue));
+        if (statNumbers)
+        {
+            StatisticsNumbers.instance.ModifyAverageMultiplier(terrorMultiplier);
+        }
+    }
+
+    void UpdateTerrorValue()
+    {
+        currentTerrorValue = (nextTerrorValue + previousTerrorValue) / 2;
+        GUIManager.instance.UpdateTerrorMeterLevelIndicator(terrorMultiplier - 1);
+        if (statNumbers)
+        {
+            StatisticsNumbers.instance.ModifyHighestMultiplier(terrorMultiplier);
+        }
     }
 
     public enum TerrorLevel

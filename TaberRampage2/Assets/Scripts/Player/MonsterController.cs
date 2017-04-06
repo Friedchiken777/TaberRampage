@@ -66,6 +66,10 @@ public class MonsterController : MonoBehaviour
         dashModifier = 1f;
         ccHeight = cc.height;
         statNumbers = (StatisticsNumbers.instance != null);
+        if (statNumbers)
+        {
+            StatisticsNumbers.instance.SetPlayerPosition(transform.position);
+        }
 	}
 
 	void FixedUpdate ()
@@ -219,7 +223,7 @@ public class MonsterController : MonoBehaviour
                 dashFall = true;
                 if (statNumbers)
                 {
-                    StatisticsNumbers.instance.ModifyTotalDashesPerformed(1);
+                    StatisticsNumbers.instance.ModifyTotalDashesPerformed();
                 }
             }
         }
@@ -250,6 +254,11 @@ public class MonsterController : MonoBehaviour
         }
 
         Vector3 finalMove = new Vector3(horizontalMove, verticalMove, 0.0f);
+        
+        if (statNumbers)
+        {
+            StatisticsNumbers.instance.ModifyTotalDistanceTraveled(transform.position);
+        }
         
         cc.Move(finalMove * Time.deltaTime);
     }   

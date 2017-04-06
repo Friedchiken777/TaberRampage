@@ -52,12 +52,6 @@ public class GUIManager : MonoBehaviour
 
         resolutionOffset = (float)Screen.height / MAGICSCORETRANSFORMNUMBER;
     }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-
-    }
 
     public void UpdateScore(int s)
     {
@@ -84,10 +78,9 @@ public class GUIManager : MonoBehaviour
     
     public void UpdateTerrorMeterLevelIndicator(int m)
     {
-        int index = m;
         for (int i = 0; i < terrorMeterLevelIndicator.Length; i++)
         {
-            if (i <= index)
+            if (i <= m)
             {
                 terrorMeterLevelIndicator[i].enabled = true;
             }
