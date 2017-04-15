@@ -55,5 +55,6 @@ public enum signType
 {
     Center,
     EastNeighbor,
+    EastNeighborRoofOnly,
     NorthSouthNeighbor
 }

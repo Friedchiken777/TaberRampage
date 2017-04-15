@@ -139,7 +139,7 @@ public class CitySpawnManager : MonoBehaviour
         }
     }
 
-    //Greates ground section at random from all possible round sections
+    //Creates ground section at random from all possible round sections
     void SpawnCitySection(int sign)
     {
         int rand = Random.Range(0, cityGrounds.Count);
@@ -378,6 +378,26 @@ public class CitySpawnManager : MonoBehaviour
                             }
                             break;
                     }
+                    case signType.EastNeighborRoofOnly:
+                    {
+                            foreach (BuildingChunk b in buildingChunksInQuestion)
+                            {
+                                int rand = Random.Range(0, s.GetComponent<SignChunk>().spawnRate);
+                                //check for east neighbor
+                                if (b.GetNeighbor(0) != null && b.isSky && !b.hasSign && rand == 1)
+                                {
+                                    //check for neighboor conflicts
+                                    if (!b.GetNeighbor(0).hasSign)
+                                    {
+                                        GameObject tempSign = Instantiate(s, b.transform.position, b.transform.rotation) as GameObject;
+                                        tempSign.transform.parent = foundation.transform;
+                                        b.hasSign = true;
+                                        b.GetNeighbor(0).hasSign = true;
+                                    }
+                                }
+                            }
+                            break;
+                    }
                     case signType.NorthSouthNeighbor:
                     {
                             foreach (BuildingChunk b in buildingChunksInQuestion)
@@ -386,15 +406,15 @@ public class CitySpawnManager : MonoBehaviour
                                 //check for border chunk
                                 if (b.transform.childCount > 0)
                                 {
-                                    //print(s.GetComponent<SignChunk>().westSide + " " + " " + b.transform.GetChild(0).name + b.transform.GetComponentInChildren<BuildingChunk>().westSideBorder + " " + b.transform.GetChild(0).GetComponent<BuildingChunk>().westSideBorder);
+                                    print(s.GetComponent<SignChunk>().westSide + " " + " " + b.transform.GetChild(0).name + b.transform.GetComponentInChildren<BuildingChunk>().westSideBorder + " " + b.transform.GetChild(0).GetComponent<BuildingChunk>().westSideBorder);
                                     //check for border on correct side
-                                    if ((s.GetComponent<SignChunk>().westSide && b.transform.GetChild(0).GetComponent<BuildingChunk>().westSideBorder) || (!s.GetComponent<SignChunk>().westSide && !b.transform.GetChild(0).GetComponent<BuildingChunk>().westSideBorder))
+                                    if ((s.GetComponent<SignChunk>().westSide && b.transform.GetChild(0).GetComponent<BuildingChunk>().westSideBorder) || (!s.GetComponent<SignChunk>().westSide && !b.transform.GetChild(0).GetComponent<BuildingChunk>().westSideBorder && b.transform.GetChild(0).GetComponent<BuildingChunk>().isBorder))
                                     {
                                         //check positioning
                                         if (b.GetNeighbor(2) != null && b.GetNeighbor(3) != null && !b.hasSign && b.floorLevel > 3 && rand == 1)
                                         {
                                             //check neighbor conflicts
-                                            if (!b.GetNeighbor(2).hasSign && !b.GetNeighbor(3).hasSign)
+                                            if (!b.GetNeighbor(2).hasSign && !b.GetNeighbor(3).hasSign && !b.isSky && !b.GetNeighbor(2).isSky && !b.GetNeighbor(3).isSky)
                                             {
                                                 GameObject tempSign = Instantiate(s, b.transform.position, b.transform.rotation) as GameObject;
                                                 tempSign.transform.parent = foundation.transform;
@@ -450,7 +470,7 @@ public class CitySpawnManager : MonoBehaviour
     {
         foreach(BuildingChunk b in foundation.GetComponentsInChildren<BuildingChunk>())
         {
-            if (!b.isBorder && !b.isSky)
+            if (!b.isBorder) //&& !b.isSky)
             {
                 RaycastHit hitR;
                 if (Physics.Linecast(b.GetComponent<Collider>().bounds.center, 
