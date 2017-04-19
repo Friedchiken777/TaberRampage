@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: ddc0b4a810578cc43a492da82e48997f
-timeCreated: 1470033610
+guid: c1a68f739fc2b4d449871ed249fbdabf
+timeCreated: 1492640538
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -17,14 +17,14 @@ TextureImporter:
     21300020: C_Ground0_BorderL
     21300022: C_Ground1
     21300024: C_Ground0_Door
-    21300026: C_Ground2
+    21300026: C_Ground3
     21300028: C_Ground0_BorderR
-  serializedVersion: 2
+  serializedVersion: 4
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
     mipMapFadeDistanceStart: 1
@@ -36,12 +36,10 @@ TextureImporter:
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
@@ -50,9 +48,7 @@ TextureImporter:
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -60,12 +56,44 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 500
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: C_Roof0_BorderL
+    - serializedVersion: 2
+      name: C_Roof0_BorderL
       rect:
         serializedVersion: 2
         x: 0
@@ -75,23 +103,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 46, y: 171.66669}
-        - {x: 46, y: 129.66669}
-        - {x: 88, y: 78.66669}
-        - {x: 102, y: 81.66669}
-        - {x: 93, y: -109.33331}
-        - {x: 101, y: -169.33331}
-        - {x: 103, y: -170.33331}
-        - {x: 171, y: -170.33331}
-        - {x: 171, y: 171.66669}
-      - - {x: 92, y: 33.666687}
-        - {x: 94, y: 31.666687}
-        - {x: 97, y: 32.666687}
-        - {x: 97, y: 37.666687}
-        - {x: 95, y: 39.666687}
-        - {x: 92, y: 38.666687}
-    - name: C_Roof1
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: C_Roof1
       rect:
         serializedVersion: 2
         x: 1024
@@ -101,12 +116,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -170.66666, y: 171.66669}
-        - {x: -170.66666, y: -170.33331}
-        - {x: 171.33334, y: -170.33331}
-        - {x: 171.33334, y: 171.66669}
-    - name: C_Roof2
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: C_Roof2
       rect:
         serializedVersion: 2
         x: 2048
@@ -116,12 +129,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -170.33331, y: 171.66669}
-        - {x: -170.33331, y: -170.33331}
-        - {x: 171.66669, y: -170.33331}
-        - {x: 171.66669, y: 171.66669}
-    - name: C_Roof3
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: C_Roof3
       rect:
         serializedVersion: 2
         x: 3072
@@ -131,12 +142,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -171, y: 171.66669}
-        - {x: -171, y: -170.33331}
-        - {x: 171, y: -170.33331}
-        - {x: 171, y: 171.66669}
-    - name: C_Roof0_BorderR
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: C_Roof0_BorderR
       rect:
         serializedVersion: 2
         x: 4096
@@ -146,19 +155,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -92.666626, y: 72.66669}
-        - {x: -79.666626, y: 79.66669}
-        - {x: -26.666626, y: 134.66669}
-        - {x: -26.666626, y: 168.66669}
-        - {x: -29.666626, y: 171.66669}
-        - {x: -170.66663, y: 171.66669}
-        - {x: -170.66663, y: -170.33331}
-        - {x: -97.666626, y: -170.33331}
-        - {x: -90.666626, y: -155.33331}
-        - {x: -93.666626, y: -110.33331}
-        - {x: -91.666626, y: -5.333313}
-    - name: C_Middle0_BorderL
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: C_Middle0_BorderL
       rect:
         serializedVersion: 2
         x: 0
@@ -168,20 +168,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 100, y: 171.33334}
-        - {x: 97, y: -24.666656}
-        - {x: 95, y: -32.666656}
-        - {x: 95, y: -170.66666}
-        - {x: 171, y: -170.66666}
-        - {x: 171, y: 171.33334}
-      - - {x: 91, y: -105.66666}
-        - {x: 93, y: -107.66666}
-        - {x: 96, y: -106.66666}
-        - {x: 96, y: -95.66666}
-        - {x: 94, y: -93.66666}
-        - {x: 91, y: -94.66666}
-    - name: C_Middle1
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: C_Middle1
       rect:
         serializedVersion: 2
         x: 1024
@@ -191,12 +181,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -170.66666, y: 171.33334}
-        - {x: -170.66666, y: -170.66666}
-        - {x: 171.33334, y: -170.66666}
-        - {x: 171.33334, y: 171.33334}
-    - name: C_Middle2
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: C_Middle2
       rect:
         serializedVersion: 2
         x: 2048
@@ -206,12 +194,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -170.33331, y: 171.33334}
-        - {x: -170.33331, y: -170.66666}
-        - {x: 171.66669, y: -170.66666}
-        - {x: 171.66669, y: 171.33334}
-    - name: C_Middle3
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: C_Middle3
       rect:
         serializedVersion: 2
         x: 3072
@@ -221,12 +207,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -171, y: 171.33334}
-        - {x: -171, y: -170.66666}
-        - {x: 171, y: -170.66666}
-        - {x: 171, y: 171.33334}
-    - name: C_Middle0_BorderR
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: C_Middle0_BorderR
       rect:
         serializedVersion: 2
         x: 4096
@@ -236,18 +220,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -89.666626, y: 54.333344}
-        - {x: -89.666626, y: 105.33334}
-        - {x: -95.666626, y: 170.33334}
-        - {x: -96.666626, y: 171.33334}
-        - {x: -170.66663, y: 171.33334}
-        - {x: -170.66663, y: -170.66666}
-        - {x: -89.666626, y: -170.66666}
-        - {x: -90.666626, y: -167.66666}
-        - {x: -95.666626, y: -118.66666}
-        - {x: -91.666626, y: 16.333344}
-    - name: C_Ground0_BorderL
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: C_Ground0_BorderL
       rect:
         serializedVersion: 2
         x: 0
@@ -257,22 +233,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 95, y: 171}
-        - {x: 93, y: 169}
-        - {x: 93, y: 144}
-        - {x: 98, y: -20}
-        - {x: 83, y: -73}
-        - {x: 83, y: -171}
-        - {x: 171, y: -171}
-        - {x: 171, y: 171}
-      - - {x: 90, y: -83}
-        - {x: 91, y: -86}
-        - {x: 95, y: -86}
-        - {x: 97, y: -84}
-        - {x: 96, y: -81}
-        - {x: 92, y: -81}
-    - name: C_Ground1
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: C_Ground1
       rect:
         serializedVersion: 2
         x: 1024
@@ -282,12 +246,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -170.66666, y: 171}
-        - {x: -170.66666, y: -171}
-        - {x: 171.33334, y: -171}
-        - {x: 171.33334, y: 171}
-    - name: C_Ground0_Door
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: C_Ground0_Door
       rect:
         serializedVersion: 2
         x: 2048
@@ -297,12 +259,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -170.33331, y: 171}
-        - {x: -170.33331, y: -171}
-        - {x: 171.66669, y: -171}
-        - {x: 171.66669, y: 171}
-    - name: C_Ground2
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: C_Ground3
       rect:
         serializedVersion: 2
         x: 3072
@@ -312,12 +272,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -171, y: 171}
-        - {x: -171, y: -171}
-        - {x: 171, y: -171}
-        - {x: 171, y: 171}
-    - name: C_Ground0_BorderR
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: C_Ground0_BorderR
       rect:
         serializedVersion: 2
         x: 4096
@@ -327,17 +285,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -86.666626, y: 24}
-        - {x: -80.666626, y: 144}
-        - {x: -81.666626, y: 165}
-        - {x: -87.666626, y: 171}
-        - {x: -170.66663, y: 171}
-        - {x: -170.66663, y: -171}
-        - {x: -76.666626, y: -171}
-        - {x: -75.666626, y: -149}
-        - {x: -75.666626, y: -93}
-        - {x: -93.666626, y: -80}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
