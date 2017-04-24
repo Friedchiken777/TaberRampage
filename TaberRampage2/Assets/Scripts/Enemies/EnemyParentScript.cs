@@ -33,12 +33,15 @@ public class EnemyParentScript : MonoBehaviour
 
     public EnemySpawnTypes spawnType;
 
+    bool hasSpriteRenderer;
+
     // Use this for initialization
     protected void Awake ()
     {
         monster = GameObject.FindObjectOfType<MonsterController>();
         currentHealth = maxHealth;
         statNumbers = (StatisticsNumbers.instance != null);
+        hasSpriteRenderer = GetComponent<SpriteRenderer>() != null;
     }
 
 	
@@ -134,11 +137,25 @@ public class EnemyParentScript : MonoBehaviour
             yield return new WaitForSeconds(turnDelay);
             if (Mathf.Sign(direction.x) >= 0)
             {
-                GetComponent<SpriteRenderer>().flipX = true;
+                if (hasSpriteRenderer)
+                {
+                    GetComponent<SpriteRenderer>().flipX = true;
+                }
+                else
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
             }
             else
             {
-                GetComponent<SpriteRenderer>().flipX = false;
+                if (hasSpriteRenderer)
+                {
+                    GetComponent<SpriteRenderer>().flipX = false;
+                }
+                else
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
             }
         }
     }

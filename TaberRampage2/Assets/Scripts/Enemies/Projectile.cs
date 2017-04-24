@@ -8,30 +8,24 @@ public class Projectile : MonoBehaviour
     float speed, damage, slowPercent, slowDurration;
     [SerializeField]
     bool stunsPlayer;
-    bool readyToFire;
     Vector3 target;
 
 	// Use this for initialization
 	void Awake ()
     {
-        target = Vector3.zero;
-        readyToFire = false;
+        target = Vector3.right;
         Destroy(this.gameObject, DESTROYTIME);
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (readyToFire)
-        {
-            transform.position += target * speed * Time.deltaTime;
-        }
+        transform.Translate(target * speed * Time.smoothDeltaTime);
 	}
 
     public void SetTarget(Vector3 t)
     {
-        target = (t - transform.position).normalized;
-        readyToFire = true;
+        target = t;
     }
 
     void OnTriggerEnter(Collider col)

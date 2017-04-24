@@ -9,7 +9,7 @@ public class CitySpawnManager : MonoBehaviour
     const int MAXBUILDINGHEIGHT = 10;                    //maximum height of buildings
     const float BORDERCOLLIDERCENTERX = 0.75f;          //modified center for building border pieces collider x axis only
     const float BORDERCOLLIDERSIZEX = 0.55f;            //modified size for building border pieces collider x axis only
-    const float MINALLEYDIST = 0.15f;                   //min distance between buildings
+    const float MINALLEYDIST = CHUNKSIZE * 0.25f;       //min distance between buildings
     const float MAXALLEYDIST = CHUNKSIZE * 0.5f;        //max space between buildings
 
     public bool debug = false;                          //toggles debug lines
@@ -406,7 +406,7 @@ public class CitySpawnManager : MonoBehaviour
                                 //check for border chunk
                                 if (b.transform.childCount > 0)
                                 {
-                                    print(s.GetComponent<SignChunk>().westSide + " " + " " + b.transform.GetChild(0).name + b.transform.GetComponentInChildren<BuildingChunk>().westSideBorder + " " + b.transform.GetChild(0).GetComponent<BuildingChunk>().westSideBorder);
+                                    //print(s.GetComponent<SignChunk>().westSide + " " + " " + b.transform.GetChild(0).name + b.transform.GetComponentInChildren<BuildingChunk>().westSideBorder + " " + b.transform.GetChild(0).GetComponent<BuildingChunk>().westSideBorder);
                                     //check for border on correct side
                                     if ((s.GetComponent<SignChunk>().westSide && b.transform.GetChild(0).GetComponent<BuildingChunk>().westSideBorder) || (!s.GetComponent<SignChunk>().westSide && !b.transform.GetChild(0).GetComponent<BuildingChunk>().westSideBorder && b.transform.GetChild(0).GetComponent<BuildingChunk>().isBorder))
                                     {

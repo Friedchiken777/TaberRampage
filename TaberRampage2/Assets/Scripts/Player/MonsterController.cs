@@ -422,7 +422,7 @@ public class MonsterController : MonoBehaviour
             {
                 StatisticsNumbers.instance.ModifyTotalHealthRecovered(d);
             }
-            print(currentHealth);  
+            //print(currentHealth);  
         }
         else
         {
