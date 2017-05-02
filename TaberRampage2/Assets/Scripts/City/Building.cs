@@ -10,7 +10,7 @@ public class Building : MonoBehaviour
 
     public bool heroBuilding;
 
-    public List<GameObject> groundFloorKit, middleFloorKit, roofKit, skyKit, signKit;
+    public List<GameObject> groundKit, groundBorderKit, middleKit, middleBorderKit, roofKit, roofBorderKit, skyKit, signKit;
 
     public float maxHealth, currentHealth;
 
@@ -27,17 +27,32 @@ public class Building : MonoBehaviour
         foreach (GameObject g in Resources.LoadAll("TestStuff/Buildings/" + gameObject.name + "/GroundFloor", typeof(GameObject)))
         {
             //Debug.Log("prefab found: " + g.name);
-            groundFloorKit.Add(g);
+            groundKit.Add(g);
+        }
+        foreach (GameObject g in Resources.LoadAll("TestStuff/Buildings/" + gameObject.name + "/GroundBorder", typeof(GameObject)))
+        {
+            //Debug.Log("prefab found: " + g.name);
+            groundBorderKit.Add(g);
         }
         foreach (GameObject g in Resources.LoadAll("TestStuff/Buildings/" + gameObject.name + "/MiddleFloors", typeof(GameObject)))
         {
             //Debug.Log("prefab found: " + g.name);
-            middleFloorKit.Add(g);
+            middleKit.Add(g);
+        }
+        foreach (GameObject g in Resources.LoadAll("TestStuff/Buildings/" + gameObject.name + "/MiddleBorder", typeof(GameObject)))
+        {
+            //Debug.Log("prefab found: " + g.name);
+            middleBorderKit.Add(g);
         }
         foreach (GameObject g in Resources.LoadAll("TestStuff/Buildings/" + gameObject.name + "/Roof", typeof(GameObject)))
         {
             //Debug.Log("prefab found: " + g.name);
             roofKit.Add(g);
+        }
+        foreach (GameObject g in Resources.LoadAll("TestStuff/Buildings/" + gameObject.name + "/RoofBorder", typeof(GameObject)))
+        {
+            //Debug.Log("prefab found: " + g.name);
+            roofBorderKit.Add(g);
         }
         foreach (GameObject g in Resources.LoadAll("TestStuff/Buildings/" + gameObject.name + "/Sky", typeof(GameObject)))
         {

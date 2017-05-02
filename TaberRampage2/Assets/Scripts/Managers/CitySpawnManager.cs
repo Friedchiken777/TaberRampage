@@ -9,8 +9,8 @@ public class CitySpawnManager : MonoBehaviour
     const int MAXBUILDINGHEIGHT = 10;                    //maximum height of buildings
     const float BORDERCOLLIDERCENTERX = 0.75f;          //modified center for building border pieces collider x axis only
     const float BORDERCOLLIDERSIZEX = 0.55f;            //modified size for building border pieces collider x axis only
-    const float MINALLEYDIST = CHUNKSIZE * 0.25f;       //min distance between buildings
-    const float MAXALLEYDIST = CHUNKSIZE * 0.5f;        //max space between buildings
+    const float MINALLEYDIST = CHUNKSIZE * 1f;       //min distance between buildings
+    const float MAXALLEYDIST = CHUNKSIZE * 1.5f;        //max space between buildings
 
     public bool debug = false;                          //toggles debug lines
 
@@ -153,78 +153,75 @@ public class CitySpawnManager : MonoBehaviour
         Vector3 spawnPosition = new Vector3(newCenter, currentGround.GetComponent<Collider>().bounds.center.y, currentGround.GetComponent<Collider>().bounds.center.z);
         spawnGround.transform.position = (spawnPosition);
 
-        SpawnBuildings(spawnGround);
+        SpawnBuildings(spawnGround, sign);
     }
 
     //Spawns buildings on a ground section
-    void SpawnBuildings(GameObject ground)
+    void SpawnBuildings(GameObject ground, int sign)
     {
         Vector3 groundmin = ground.transform.position - ground.GetComponent<Collider>().bounds.extents;
         Vector3 groundmax = ground.transform.position + ground.GetComponent<Collider>().bounds.extents;
 
-        for (float x = groundmin.x; x < groundmax.x; x+= CHUNKSIZE)
+        for (float groundLocation = groundmin.x; groundLocation < groundmax.x; groundLocation+= CHUNKSIZE)
         {
-            Vector3 top = new Vector3(x, ground.transform.position.y + 10, ground.transform.position.z);
-            Vector3 bottom = new Vector3(x, ground.transform.position.y, ground.transform.position.z);
-            
+            Vector3 top = new Vector3(groundLocation, ground.transform.position.y + (CHUNKSIZE*MAXBUILDINGHEIGHT) + CHUNKSIZE, ground.transform.position.z);
+            Vector3 bottom = new Vector3(groundLocation, ground.transform.position.y, ground.transform.position.z);
+
+            //print(groundLocation);
             //check for double spawn at start
+            float slightOffset = Random.Range(MINALLEYDIST, MAXALLEYDIST);
             if (Physics.Linecast(top, bottom, buildingChunks))
             {
-                //print("hitted" + x);
+                print("hitted" + groundLocation);
+                groundLocation += CHUNKSIZE + slightOffset;
                 continue;
             }
+            //print(groundLocation);
 
             //Building width semi hardcoded for ratio based sizing
             int randWidth = Random.Range(0,10);
             int buildingWidth = 0;
             int doorPosition = 0;
             int coin = Random.Range(0, 2);
-            //Determin door position
+            //Determin building width position
             switch (randWidth)
             {
                 case 0:
-                    buildingWidth = 4;
-                    if (coin == 0)
-                    {
-                        doorPosition = 2;
-                    }
-                    else
-                    {
-                        doorPosition = 3;
-                    }
+                    buildingWidth = 3;
                     break;
                 case 1:
                 case 2:
                 case 3:
-                    buildingWidth = 6;
-                    if (coin == 0)
-                    {
-                        doorPosition = 3;
-                    }
-                    else
-                    {
-                        doorPosition = 4;
-                    }
+                    buildingWidth = 5;
                     break;
                 case 4:
                 case 5:
-                    buildingWidth = 7;
-                    doorPosition = 4;
+                    buildingWidth = 6;
                     break;
                 default:
-                    buildingWidth = 5;
-                    doorPosition = 3;
+                    buildingWidth = 4;
                     break;
+            }
+            //determine door position
+            if (coin == 0)
+            {
+                doorPosition = Mathf.FloorToInt(buildingWidth / 2);
+            }
+            else
+            {
+                doorPosition = Mathf.FloorToInt((buildingWidth / 2)  + 1);
             }
 
             int buildingHeight = Random.Range(MINBUILDINGHEIGHT, MAXBUILDINGHEIGHT);
 
-            //select building to build
-            float slightOffset = Random.Range(MINALLEYDIST, MAXALLEYDIST);
-            //print(slightOffset);
-            Vector3 foundationLocation = new Vector3(x - slightOffset, (groundmax.y + (CHUNKSIZE/2)), ground.transform.position.z);
+            //place building        
+            Vector3 foundationLocation = new Vector3(groundLocation, (groundmax.y + (CHUNKSIZE/2)), ground.transform.position.z);
+
+            //create space for next building
+            groundLocation += (buildingWidth * CHUNKSIZE) + slightOffset;
+            
+            //select building
             int floorplan = Random.Range(0, buildings.Count);
-            //print(floorplan);
             GameObject foundation = Instantiate(buildings[floorplan], foundationLocation, ground.transform.rotation) as GameObject;
             if (statNumbers)
             {
@@ -233,36 +230,38 @@ public class CitySpawnManager : MonoBehaviour
 
             for (int i = 1; i <= buildingWidth; i++)
             {
+                //Spawn Bottom Floor (Special because of door)
                 //spawn left border
                 if (i == 1)
                 {
-                    newestChunk = Instantiate(foundation.GetComponent<Building>().groundFloorKit[0], foundation.transform.position, foundation.transform.rotation) as GameObject;
-                    FixBorderCollider(newestChunk, 1);
+                    int groundPickerBL = Random.Range(0, foundation.GetComponent<Building>().groundBorderKit.Count / 2);
+                    newestChunk = Instantiate(foundation.GetComponent<Building>().groundBorderKit[groundPickerBL], foundation.transform.position, foundation.transform.rotation) as GameObject;
                     newestChunk.GetComponent<BuildingChunk>().westSideBorder = true;
                 }
                 //spawn right border
                 else if (i == buildingWidth)
                 {
+                    int groundPickerBR = Random.Range(foundation.GetComponent<Building>().groundBorderKit.Count / 2 , foundation.GetComponent<Building>().groundBorderKit.Count);
                     Vector3 spawnSpot = new Vector3((newestChunk.transform.position.x + CHUNKSIZE), newestChunk.transform.position.y, newestChunk.transform.position.z);
-                    newestChunk = Instantiate(foundation.GetComponent<Building>().groundFloorKit[1], spawnSpot, newestChunk.transform.rotation) as GameObject;
-                    FixBorderCollider(newestChunk, -1);
+                    newestChunk = Instantiate(foundation.GetComponent<Building>().groundBorderKit[groundPickerBR], spawnSpot, newestChunk.transform.rotation) as GameObject;
                 }
                 //place door
                 else if (i == doorPosition)
                 {
                     Vector3 spawnSpot = new Vector3((newestChunk.transform.position.x + CHUNKSIZE), newestChunk.transform.position.y, newestChunk.transform.position.z);
-                    newestChunk = Instantiate(foundation.GetComponent<Building>().groundFloorKit[2], spawnSpot, newestChunk.transform.rotation) as GameObject;
+                    newestChunk = Instantiate(foundation.GetComponent<Building>().groundKit[0], spawnSpot, newestChunk.transform.rotation) as GameObject;
                 }
                 else
                 {
                     Vector3 spawnSpot = new Vector3((newestChunk.transform.position.x + CHUNKSIZE), newestChunk.transform.position.y, newestChunk.transform.position.z);
-                    int groundPicker = Random.Range(3, foundation.GetComponent<Building>().groundFloorKit.Count);
-                    newestChunk = Instantiate(foundation.GetComponent<Building>().groundFloorKit[groundPicker], spawnSpot, newestChunk.transform.rotation) as GameObject;                    
+                    int groundPicker = Random.Range(1, foundation.GetComponent<Building>().groundKit.Count);
+                    newestChunk = Instantiate(foundation.GetComponent<Building>().groundKit[groundPicker], spawnSpot, newestChunk.transform.rotation) as GameObject;                    
                 }
                 newestChunk.transform.parent = foundation.transform;
                 newestChunk.transform.parent.GetComponent<Building>().maxHealth += newestChunk.GetComponent<BuildingChunk>().maxHealth;
                 for (int j = 1; j <= buildingHeight; j++)
-                {                    
+                {
+                    int randChunk = Random.Range(0, foundation.GetComponent<Building>().roofBorderKit.Count / 2);
                     if (j == 1)
                     {
                         lowerFloor = newestChunk;
@@ -270,19 +269,25 @@ public class CitySpawnManager : MonoBehaviour
                     Vector3 nextfloor = new Vector3(lowerFloor.transform.position.x, lowerFloor.transform.position.y + CHUNKSIZE, lowerFloor.transform.position.z);
                     //left border
                     if (i == 1)
-                    {
+                    {                        
                         if (j != buildingHeight)
                         {
+                            
                             if (j == buildingHeight - 1)
                             {
-                                lowerFloor = Instantiate(foundation.GetComponent<Building>().roofKit[0], nextfloor, lowerFloor.transform.rotation) as GameObject;
+                                lowerFloor = Instantiate(foundation.GetComponent<Building>().roofBorderKit[0], nextfloor, lowerFloor.transform.rotation) as GameObject;
                             }
                             else
                             {
-                                lowerFloor = Instantiate(foundation.GetComponent<Building>().middleFloorKit[0], nextfloor, lowerFloor.transform.rotation) as GameObject;
+                                randChunk = Random.Range(0, foundation.GetComponent<Building>().middleBorderKit.Count / 2);
+                                lowerFloor = Instantiate(foundation.GetComponent<Building>().middleBorderKit[0], nextfloor, lowerFloor.transform.rotation) as GameObject;
                             }
-                            FixBorderCollider(lowerFloor, 1);
                             lowerFloor.GetComponent<BuildingChunk>().westSideBorder = true;
+                        }
+                        else
+                        {
+                            randChunk = Random.Range(0, foundation.GetComponent<Building>().skyKit.Count);
+                            lowerFloor = Instantiate(foundation.GetComponent<Building>().skyKit[randChunk], nextfloor, lowerFloor.transform.rotation) as GameObject;
                         }
                     }
                     //right border
@@ -290,21 +295,27 @@ public class CitySpawnManager : MonoBehaviour
                     {
                         if (j != buildingHeight)
                         {
+                            randChunk = Random.Range(foundation.GetComponent<Building>().roofBorderKit.Count / 2, foundation.GetComponent<Building>().roofBorderKit.Count);
                             if (j == buildingHeight - 1)
                             {
-                                lowerFloor = Instantiate(foundation.GetComponent<Building>().roofKit[1], nextfloor, lowerFloor.transform.rotation) as GameObject;
+                                lowerFloor = Instantiate(foundation.GetComponent<Building>().roofBorderKit[1], nextfloor, lowerFloor.transform.rotation) as GameObject;
                             }
                             else
                             {
-                                lowerFloor = Instantiate(foundation.GetComponent<Building>().middleFloorKit[1], nextfloor, lowerFloor.transform.rotation) as GameObject;
+                                randChunk = Random.Range(foundation.GetComponent<Building>().middleBorderKit.Count / 2, foundation.GetComponent<Building>().middleBorderKit.Count);
+                                lowerFloor = Instantiate(foundation.GetComponent<Building>().middleBorderKit[1], nextfloor, lowerFloor.transform.rotation) as GameObject;
                             }
-                            FixBorderCollider(lowerFloor, -1);
+                        }
+                        else
+                        {
+                            randChunk = Random.Range(0, foundation.GetComponent<Building>().skyKit.Count);
+                            lowerFloor = Instantiate(foundation.GetComponent<Building>().skyKit[randChunk], nextfloor, lowerFloor.transform.rotation) as GameObject;
                         }
                     }
                     //center parts
                     else
                     {
-                        int randChunk = Random.Range(2, foundation.GetComponent<Building>().roofKit.Count);
+                        randChunk = Random.Range(0, foundation.GetComponent<Building>().roofKit.Count);
                         if (j == buildingHeight)
                         {
                             randChunk = Random.Range(0, foundation.GetComponent<Building>().skyKit.Count);
@@ -316,7 +327,8 @@ public class CitySpawnManager : MonoBehaviour
                         }
                         else
                         {
-                            lowerFloor = Instantiate(foundation.GetComponent<Building>().middleFloorKit[randChunk], nextfloor, lowerFloor.transform.rotation) as GameObject;
+                            randChunk = Random.Range(0, foundation.GetComponent<Building>().middleKit.Count);
+                            lowerFloor = Instantiate(foundation.GetComponent<Building>().middleKit[randChunk], nextfloor, lowerFloor.transform.rotation) as GameObject;
                         }
                     }
                     lowerFloor.transform.parent = foundation.transform;
@@ -416,6 +428,23 @@ public class CitySpawnManager : MonoBehaviour
                                             //check neighbor conflicts
                                             if (!b.GetNeighbor(2).hasSign && !b.GetNeighbor(3).hasSign && !b.isSky && !b.GetNeighbor(2).isSky && !b.GetNeighbor(3).isSky)
                                             {
+                                                RaycastHit hit;
+                                                if (Physics.Raycast(new Vector3(b.transform.position.x + CHUNKSIZE, b.transform.position.y, b.transform.position.z), Vector3.down, out hit))
+                                                {
+                                                    if (hit.collider.gameObject.GetComponent<SignChunk>())
+                                                    {
+                                                        print("hit sign +");
+                                                        continue;
+                                                    }
+                                                }
+                                                if (Physics.Raycast(new Vector3(b.transform.position.x - CHUNKSIZE, b.transform.position.y, b.transform.position.z), Vector3.down, out hit))
+                                                {
+                                                    if (hit.collider.gameObject.GetComponent<SignChunk>())
+                                                    {
+                                                        print("hit sign -");
+                                                        continue;
+                                                    }
+                                                }
                                                 GameObject tempSign = Instantiate(s, b.transform.position, b.transform.rotation) as GameObject;
                                                 tempSign.transform.parent = foundation.transform;
                                                 b.hasSign = true;
@@ -457,15 +486,6 @@ public class CitySpawnManager : MonoBehaviour
         return returnChunks;
     }
 
-    void FixBorderCollider(GameObject o, int sign)
-    {
-        BoxCollider oldC = o.GetComponent<BoxCollider>();
-        BoxCollider newC = o.AddComponent<BoxCollider>();
-        newC.center = new Vector3(BORDERCOLLIDERCENTERX * sign, newC.center.y, newC.center.z);
-        newC.size = new Vector3(BORDERCOLLIDERSIZEX, newC.size.y, newC.size.z);
-        Destroy(oldC, 0.5f);
-    }
-
     void SetNeghboors(GameObject foundation)
     {
         foreach(BuildingChunk b in foundation.GetComponentsInChildren<BuildingChunk>())
@@ -482,10 +502,10 @@ public class CitySpawnManager : MonoBehaviour
                         {
                             b.GetComponent<BuildingChunk>().SetBuildingNeighbor(hitR.collider.gameObject.GetComponent<BuildingChunk>(), 0);
                         }
-                        if (!b.isBorder && hitR.collider.GetComponent<BuildingChunk>().isBorder)
+                        /*if (!b.isBorder && hitR.collider.GetComponent<BuildingChunk>().isBorder)
                         {
                             hitR.collider.transform.parent = b.transform;
-                        }
+                        }*/
                     }
                 }
                 RaycastHit hitL;
@@ -498,10 +518,10 @@ public class CitySpawnManager : MonoBehaviour
                         {
                             b.GetComponent<BuildingChunk>().SetBuildingNeighbor(hitL.collider.gameObject.GetComponent<BuildingChunk>(), 1);
                         }
-                        if (!b.isBorder && hitL.collider.GetComponent<BuildingChunk>().isBorder)
+                        /*if (!b.isBorder && hitL.collider.GetComponent<BuildingChunk>().isBorder)
                         {
                             hitL.collider.transform.parent = b.transform;
-                        }
+                        }*/
                     }
                 }
                 RaycastHit hitU;

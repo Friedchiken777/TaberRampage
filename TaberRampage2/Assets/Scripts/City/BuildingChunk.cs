@@ -9,7 +9,7 @@ public class BuildingChunk : MonoBehaviour
     const int MAXNEIGBORRADIUS = 2;
 
     public Material clean, damaged, broken;
-    public Sprite cleanS, damagedS, brokenS;
+    public Sprite cleanS, damagedS, brokenS, windowOpenS;
     public bool isSky, isBorder, isDoor, hasWindowEnemy, hasSign, westSideBorder;
     public float maxHealth, floorLevel;
     public float currentHealth;

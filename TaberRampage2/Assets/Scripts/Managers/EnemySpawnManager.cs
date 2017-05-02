@@ -157,6 +157,10 @@ public class EnemySpawnManager : MonoBehaviour
             if (testChunk.Count > 0 && testChunk[pos] != null)
             {
                 Vector3 zOffset = new Vector3(testChunk[pos].transform.position.x, testChunk[pos].transform.position.y, ZLAYER);
+                if (testChunk[pos].windowOpenS != null)
+                {
+                    testChunk[pos].gameObject.GetComponent<SpriteRenderer>().sprite = testChunk[pos].windowOpenS;
+                }
                 GameObject enemyTemp = Instantiate(enemy, zOffset, testChunk[pos].transform.rotation) as GameObject;
                 testChunk[pos].hasWindowEnemy = true;
                 enemyTemp.transform.parent = testChunk[pos].transform;
