@@ -9,7 +9,7 @@ public class CitySpawnManager : MonoBehaviour
     const int MAXBUILDINGHEIGHT = 10;                    //maximum height of buildings
     const float BORDERCOLLIDERCENTERX = 0.75f;          //modified center for building border pieces collider x axis only
     const float BORDERCOLLIDERSIZEX = 0.55f;            //modified size for building border pieces collider x axis only
-    const float MINALLEYDIST = CHUNKSIZE * 1f;       //min distance between buildings
+    const float MINALLEYDIST = CHUNKSIZE * 1.25f;       //min distance between buildings
     const float MAXALLEYDIST = CHUNKSIZE * 1.5f;        //max space between buildings
 
     public bool debug = false;                          //toggles debug lines
@@ -162,14 +162,15 @@ public class CitySpawnManager : MonoBehaviour
         Vector3 groundmin = ground.transform.position - ground.GetComponent<Collider>().bounds.extents;
         Vector3 groundmax = ground.transform.position + ground.GetComponent<Collider>().bounds.extents;
 
-        for (float groundLocation = groundmin.x; groundLocation < groundmax.x; groundLocation+= CHUNKSIZE)
+        float slightOffset = Random.Range(MINALLEYDIST, MAXALLEYDIST);
+        for (float groundLocation = groundmin.x + slightOffset; groundLocation < groundmax.x; groundLocation+= CHUNKSIZE)
         {
             Vector3 top = new Vector3(groundLocation, ground.transform.position.y + (CHUNKSIZE*MAXBUILDINGHEIGHT) + CHUNKSIZE, ground.transform.position.z);
             Vector3 bottom = new Vector3(groundLocation, ground.transform.position.y, ground.transform.position.z);
 
             //print(groundLocation);
             //check for double spawn at start
-            float slightOffset = Random.Range(MINALLEYDIST, MAXALLEYDIST);
+            
             if (Physics.Linecast(top, bottom, buildingChunks))
             {
                 print("hitted" + groundLocation);
