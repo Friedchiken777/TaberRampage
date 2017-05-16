@@ -7,6 +7,8 @@ public class CitySpawnManager : MonoBehaviour
     const float CHUNKSIZE = 2.048f;                     //size of standard building chunk
     const int MINBUILDINGHEIGHT = 4;                    //min height of buildings
     const int MAXBUILDINGHEIGHT = 10;                    //maximum height of buildings
+    const int MINISTREETSEPERATION = 2;
+    const int MAXSTREETTOLERANCE = -2;
     const float BORDERCOLLIDERCENTERX = 0.75f;          //modified center for building border pieces collider x axis only
     const float BORDERCOLLIDERSIZEX = 0.55f;            //modified size for building border pieces collider x axis only
     const float MINALLEYDIST = CHUNKSIZE * 1.25f;       //min distance between buildings
@@ -26,11 +28,12 @@ public class CitySpawnManager : MonoBehaviour
 
     public LayerMask cityFoundation, buildingChunks;
 
-    public List<GameObject> cityGrounds, buildings;
+    public List<GameObject> cityGroundsSpawnable, cityGrounds, buildings;
 
     GameObject newestChunk, lowerFloor;
 
-    bool statNumbers;
+    bool statNumbers, previousOverflow;
+    int nextStreetIn;
 
     public static CitySpawnManager instance;
 
@@ -72,13 +75,21 @@ public class CitySpawnManager : MonoBehaviour
         //load all ground types
         foreach (GameObject g in Resources.LoadAll("TestStuff/Grounds", typeof(GameObject)))
         {
-            cityGrounds.Add(g);
+            if (g.GetComponent<Grounds>().spawnBuildings)
+            {
+                cityGroundsSpawnable.Add(g);
+            }
+            else
+            {
+                cityGrounds.Add(g);
+            }
         }
         //load all building types
         foreach (GameObject g in Resources.LoadAll("TestStuff/Buildings/Foundations", typeof(GameObject)))
         {
             buildings.Add(g);
         }
+        nextStreetIn = 0;
     }
     private void Start()
     {
@@ -142,23 +153,50 @@ public class CitySpawnManager : MonoBehaviour
     //Creates ground section at random from all possible round sections
     void SpawnCitySection(int sign)
     {
-        int rand = Random.Range(0, cityGrounds.Count);
-        //print(rand);
-        GameObject spawnGround = Instantiate(cityGrounds[rand], (Vector3.forward * 30), currentGround.transform.rotation) as GameObject;
+        int coin = 0;
+        //check if street can spawn
+        if (nextStreetIn <= 0 && !previousOverflow)
+        {
+            coin = Random.Range(0, 2);
+            if (nextStreetIn < MAXSTREETTOLERANCE)
+            {
+                coin = 1;
+            }
+        }
+
+        if (coin == 0)
+        {
+            GameObject spawnGround = SpawnGroundSection(cityGroundsSpawnable, sign);
+
+            SpawnBuildings(spawnGround, sign);
+            nextStreetIn--;
+        }
+        else
+        {
+            GameObject spawnGround = SpawnGroundSection(cityGrounds, sign);
+            nextStreetIn = MINISTREETSEPERATION;
+        }
+    }
+
+    GameObject SpawnGroundSection(List<GameObject> groundList, int sign)
+    {
+        int rand = Random.Range(0, groundList.Count);
+        GameObject spawnGroundTemp = Instantiate(groundList[rand], (Vector3.forward * 30), currentGround.transform.rotation) as GameObject;
 
         float oldEdge = currentGround.GetComponent<Collider>().bounds.extents.x * sign;
 
-        float newCenter = currentGround.transform.position.x + oldEdge + (spawnGround.gameObject.GetComponent<Collider>().bounds.extents.x * sign);
+        float newCenter = currentGround.transform.position.x + oldEdge + (spawnGroundTemp.gameObject.GetComponent<Collider>().bounds.extents.x * sign);
 
         Vector3 spawnPosition = new Vector3(newCenter, currentGround.GetComponent<Collider>().bounds.center.y, currentGround.GetComponent<Collider>().bounds.center.z);
-        spawnGround.transform.position = (spawnPosition);
+        spawnGroundTemp.transform.position = (spawnPosition);
 
-        SpawnBuildings(spawnGround, sign);
+        return spawnGroundTemp;
     }
 
     //Spawns buildings on a ground section
     void SpawnBuildings(GameObject ground, int sign)
     {
+        previousOverflow = false;
         Vector3 groundmin = ground.transform.position - ground.GetComponent<Collider>().bounds.extents;
         Vector3 groundmax = ground.transform.position + ground.GetComponent<Collider>().bounds.extents;
 
@@ -173,7 +211,7 @@ public class CitySpawnManager : MonoBehaviour
             
             if (Physics.Linecast(top, bottom, buildingChunks))
             {
-                print("hitted" + groundLocation);
+                //print("hitted" + groundLocation);
                 groundLocation += CHUNKSIZE + slightOffset;
                 continue;
             }
@@ -464,6 +502,12 @@ public class CitySpawnManager : MonoBehaviour
                     }
 
                 }
+            }
+            //Check for overflow
+            if (Physics.Linecast(new Vector3(groundmax.x, groundmax.y, ground.transform.position.z), new Vector3(groundmax.x, groundmax.y + MAXBUILDINGHEIGHT, ground.transform.position.z), buildingChunks))
+            {
+                //print("overflowed");
+                previousOverflow = true;
             }
         }
     }
