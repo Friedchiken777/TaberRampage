@@ -16,12 +16,14 @@ public class TerrorManager : MonoBehaviour
 
     public static TerrorManager instance = null;
 
-    float currentTerrorValue, previousTerrorValue, nextTerrorValue;     //current terror gage level, previous terror level for gage, next terror gage level for gage
+    float currentTerrorValue, previousTerrorValue, nextTerrorValue;     //current terror gage score level, previous terror level score gage, next terror gage level score gage
     int playerScore;                                                    //player's score and overall destruction
     float terrorColdownTimer;                                           //time since last terror increase
     int terrorMultiplier;                                               // always one greater than actual terror level
 
-    public int currentTerrorLevel;                                      //current terror value
+    [SerializeField][ReadOnly]
+    int currentTerrorLevel;                                      //current terror value
+
     int terrorLoss;
     bool statNumbers;
     public static TerrorLevel terrorLevel;
@@ -37,7 +39,8 @@ public class TerrorManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
+        currentTerrorLevel = 0;
         previousTerrorValue = 0;
         nextTerrorValue = TERRORLEVEL1;
         terrorLevel = TerrorLevel.T0;
@@ -216,6 +219,11 @@ public class TerrorManager : MonoBehaviour
         {
             StatisticsNumbers.instance.ModifyHighestMultiplier(terrorMultiplier);
         }
+    }
+
+    public int GetTerrorValue()
+    {
+        return currentTerrorLevel;
     }
 
     public enum TerrorLevel

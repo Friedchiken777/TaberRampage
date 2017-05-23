@@ -166,14 +166,12 @@ public class CitySpawnManager : MonoBehaviour
 
         if (coin == 0)
         {
-            GameObject spawnGround = SpawnGroundSection(cityGroundsSpawnable, sign);
-
-            SpawnBuildings(spawnGround, sign);
+            SpawnBuildings(SpawnGroundSection(cityGroundsSpawnable, sign), sign);
             nextStreetIn--;
         }
         else
         {
-            GameObject spawnGround = SpawnGroundSection(cityGrounds, sign);
+            SpawnGroundSection(cityGrounds, sign);
             nextStreetIn = MINISTREETSEPERATION;
         }
     }

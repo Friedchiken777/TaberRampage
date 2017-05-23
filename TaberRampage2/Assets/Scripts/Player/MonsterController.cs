@@ -14,6 +14,7 @@ public class MonsterController : MonoBehaviour
     const float FLASHTIME = UNTOUCHABLETIME / NUMBEROFFLASHES;
     const float STUNTIME = 0.35f;
     const float DASHPOWERMODIFIER = 3f;
+    const float SPEEDCHECKFREQUENCY = 0.5f;
 
     CharacterController cc;                                         //reference to CharacterController
     Transform leftBottom, rightBottom, centerBottom, centerBottomBuilding;      //Location references for the left, right, bottom and bottom aligned with buildings of the character
@@ -49,6 +50,9 @@ public class MonsterController : MonoBehaviour
 
     bool statNumbers;
 
+    float speedTimer, currentMovementSpeed;
+    Vector3 speedLocation;
+
     void Start ()
     {
         cc = this.GetComponent<CharacterController>();
@@ -70,6 +74,7 @@ public class MonsterController : MonoBehaviour
         {
             StatisticsNumbers.instance.SetPlayerPosition(transform.position);
         }
+        speedLocation = transform.position;
 	}
 
 	void FixedUpdate ()
@@ -96,6 +101,17 @@ public class MonsterController : MonoBehaviour
         {
             print(AnimationSetter.instance.GetCurrentAnimationObject().name);
         }*/
+
+        speedTimer += Time.deltaTime;
+        if (speedTimer > SPEEDCHECKFREQUENCY)
+        {
+            speedTimer = 0;
+            if(speedLocation != transform.position)
+            {
+                currentMovementSpeed = transform.position.magnitude - speedLocation.magnitude;
+                speedLocation = transform.position;
+            }
+        }
     }
 
     public void Movment()
@@ -562,4 +578,11 @@ public class MonsterController : MonoBehaviour
         knockedBack = false;
         AnimationSetter.instance.state = MonsterState.Fall;
     }
+
+    public float GetCurrentMoveSpeed()
+    {
+        //print(currentMovementSpeed);
+        return currentMovementSpeed;
+    }
 }
+
