@@ -30,9 +30,9 @@ public class MonsterControllerOld : MonoBehaviour
     void Start ()
     {
         cc = this.GetComponent<CharacterController>();
-        leftBottom = transform.FindChild("LeftBottom");
-        rightBottom = transform.FindChild("RightBottom");
-        centerBottom = transform.FindChild("CenterBottom");
+        leftBottom = transform.Find("LeftBottom");
+        rightBottom = transform.Find("RightBottom");
+        centerBottom = transform.Find("CenterBottom");
         currentHealth = maxHealth;
 
         isMousePressed = false;

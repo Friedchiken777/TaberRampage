@@ -56,10 +56,10 @@ public class MonsterController : MonoBehaviour
     void Start ()
     {
         cc = this.GetComponent<CharacterController>();
-        leftBottom = transform.FindChild("LeftBottom");
-        rightBottom = transform.FindChild("RightBottom");
-        centerBottom = transform.FindChild("CenterBottom");
-        centerBottomBuilding = transform.FindChild("CenterBottomBuilding");
+        leftBottom = transform.Find("LeftBottom");
+        rightBottom = transform.Find("RightBottom");
+        centerBottom = transform.Find("CenterBottom");
+        centerBottomBuilding = transform.Find("CenterBottomBuilding");
         climbSpeed = baseClimbSpeed;
         walkSpeed = baseWalkSpeed;
         dashSpeed = baseDashSpeed;
