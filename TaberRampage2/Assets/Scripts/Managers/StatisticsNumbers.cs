@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class StatisticsNumbers : MonoBehaviour
 {
-    [SerializeField][ReadOnly]
-    float buildingChunksDestroyed, 
-          buildingsDestroyed, 
+    [SerializeField]
+    [ReadOnly]
+    float buildingChunksDestroyed,
+          buildingsDestroyed,
           environmentObjectsDestroyed,
-          totalPeopleEaten, 
-          civilliansEaten,           
-          totalHealthRecovered, 
+          totalPeopleEaten,
+          civilliansEaten,
+          totalHealthRecovered,
           totalHealthLost,
           totalDashesPerformed,
           totalHorizontalDistanceTraveled,
@@ -19,7 +20,12 @@ public class StatisticsNumbers : MonoBehaviour
           totalBuildingsGenerated,
           highestMultiplier,
           averageMultiplier,
-          gameTime;
+          gameTime,
+          totalEnemiesSpawned,
+          groundEnimiesSpawned,
+          windowEnemiesSpawned,
+          roofEnemiesSpawned,
+          skyEnemiesSpawned;
 
     [SerializeField][ReadOnly]
     float[] multiplierTimes;
@@ -207,6 +213,31 @@ public class StatisticsNumbers : MonoBehaviour
     public void SetPlayerPosition(Vector3 p)
     {
         playerPosition = p;
+    }
+
+    public void ModifyTotalEnemiesSpawned(float f = 1)
+    {
+        totalEnemiesSpawned += f;
+    }
+
+    public void ModifyTotalGroundEnemiesSpawned(float f = 1)
+    {
+        groundEnimiesSpawned += f;
+    }
+
+    public void ModifyTotalWindowEnemiesSpawned(float f = 1)
+    {
+        windowEnemiesSpawned += f;
+    }
+
+    public void ModifyTotalRoofEnemiesSpawned(float f = 1)
+    {
+        roofEnemiesSpawned += f;
+    }
+
+    public void ModifyTotalSkyEnemiesSpawned(float f = 1)
+    {
+        skyEnemiesSpawned += f;
     }
 }
 

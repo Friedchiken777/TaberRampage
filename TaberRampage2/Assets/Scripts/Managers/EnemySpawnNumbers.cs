@@ -8,7 +8,7 @@ public class EnemySpawnNumbers : MonoBehaviour
     const int MAXTERRORLEVEL = 7;
 
     [SerializeField]
-    EnemyPrefabs[] enemies = new EnemyPrefabs[MAXTERRORLEVEL +1];
+    EnemyPrefabs[] enemies;
 
     public static EnemySpawnNumbers instance = null; 
 
@@ -25,6 +25,14 @@ public class EnemySpawnNumbers : MonoBehaviour
         }
     }
 
+    /*
+     * How Enemies are Chosen:
+     * First, all enemy groups tht can spawn at the current terror level are added to the spawnableEnemies list
+     * Then, the chance to spawn each group is added to a spawnPercents list allowing a random number between 0 and 100 to determine the group that is spawned
+     * Lastly, the specific enemy to be spawned is chosen at random from all possible enemies in the chosen group
+     * Note: to increase likelyhood of a group spawning change groups terrorSpawnRate for the given terror level and adjust other groups accordingly
+     * Note: to increase likelyhood of a specific enemy spawning, add duplicate prefabs to that groups prefabs to achieve desired spawn ratio between possible enemies in group
+    */
     public GameObject PickEnemyToSpawn(int terrorLevel)
     {
         if (enemies.Length > 0)

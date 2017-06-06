@@ -29,6 +29,8 @@ public class EnemySpawnManager : MonoBehaviour
     bool playerMonsterController;
     int lastTerrorLevel;
 
+    bool statNumbers;
+
     // Use this for initialization
     void Start()
     {
@@ -51,6 +53,7 @@ public class EnemySpawnManager : MonoBehaviour
         playerSpeedOffset = Vector3.zero;
         playerMonsterController = player.GetComponent<MonsterController>() != null;
         modifyedSpawnRate = LONGESTSPAWNTIME;
+        statNumbers = (StatisticsNumbers.instance != null);
     }
 
     // Update is called once per frame
@@ -60,39 +63,47 @@ public class EnemySpawnManager : MonoBehaviour
 
         if (Mathf.Abs(spawnTimer + spawnRand) >= modifyedSpawnRate)
         {
-            if (playerMonsterController)
-            {
-                playerSpeedOffset = new Vector3(player.gameObject.GetComponent<MonsterController>().GetCurrentMoveSpeed() * SPEEDSPAWNMODIFYER, 0, 0);
-            }
+            CalculateEnemyToSpawn();
+        }
+    }
 
-            ModifySpawnRate();
-            spawnRand = Random.Range(0, modifyedSpawnRate);
-            spawnTimer = 0;
+    void CalculateEnemyToSpawn()
+    {
+        //set spawn offset if player is moving
+        if (playerMonsterController)
+        {
+            playerSpeedOffset = new Vector3(player.gameObject.GetComponent<MonsterController>().GetCurrentMoveSpeed() * SPEEDSPAWNMODIFYER, 0, 0);
+        }
 
-            GameObject enemyToSpawn = EnemySpawnNumbers.instance.PickEnemyToSpawn(TerrorManager.instance.GetTerrorValue());
+        //calculate time for next spawn
+        ModifySpawnRate();
+        spawnRand = Random.Range(0, modifyedSpawnRate);
+        spawnTimer = 0;
 
-            if (enemyToSpawn != null)
+        //choose enemy type to spawn
+        GameObject enemyToSpawn = EnemySpawnNumbers.instance.PickEnemyToSpawn(TerrorManager.instance.GetTerrorValue());
+
+        if (enemyToSpawn != null)
+        {
+            switch (enemyToSpawn.GetComponent<EnemyParentScript>().spawnType)
             {
-                switch (enemyToSpawn.GetComponent<EnemyParentScript>().spawnType)
-                {
-                    case EnemyParentScript.EnemySpawnTypes.Ground:
-                        SpawnGroundEnemy(enemyToSpawn, false);
-                        break;
-                    case EnemyParentScript.EnemySpawnTypes.Window:
-                        SpawnWindowEnemy(enemyToSpawn, false);
-                        break;
-                    case EnemyParentScript.EnemySpawnTypes.Roof:
-                        SpawnWindowEnemy(enemyToSpawn, true);
-                        break;
-                    case EnemyParentScript.EnemySpawnTypes.Sky:
-                        SpawnGroundEnemy(enemyToSpawn, true);
-                        break;
-                }
+                case EnemyParentScript.EnemySpawnTypes.Ground:
+                    SpawnGroundEnemy(enemyToSpawn, false);
+                    break;
+                case EnemyParentScript.EnemySpawnTypes.Window:
+                    SpawnWindowEnemy(enemyToSpawn, false);
+                    break;
+                case EnemyParentScript.EnemySpawnTypes.Roof:
+                    SpawnWindowEnemy(enemyToSpawn, true);
+                    break;
+                case EnemyParentScript.EnemySpawnTypes.Sky:
+                    SpawnGroundEnemy(enemyToSpawn, true);
+                    break;
             }
-            else
-            {
-                Debug.LogError("Couldn't spawn enemy");
-            }
+        }
+        else
+        {
+            Debug.LogError("Couldn't spawn enemy");
         }
     }
 
@@ -128,6 +139,18 @@ public class EnemySpawnManager : MonoBehaviour
 
         Instantiate(enemy, spawnPoint, transform.rotation);
 
+        if (statNumbers)
+        {
+            StatisticsNumbers.instance.ModifyTotalEnemiesSpawned();
+            if (sky)
+            {
+                StatisticsNumbers.instance.ModifyTotalSkyEnemiesSpawned();
+            }
+            else
+            {
+                StatisticsNumbers.instance.ModifyTotalGroundEnemiesSpawned();
+            }
+        }
     }
 
     void SpawnWindowEnemy(GameObject enemy, bool roof)
@@ -183,6 +206,18 @@ public class EnemySpawnManager : MonoBehaviour
                 GameObject enemyTemp = Instantiate(enemy, zOffset, testChunk[pos].transform.rotation) as GameObject;
                 testChunk[pos].hasWindowEnemy = true;
                 enemyTemp.transform.parent = testChunk[pos].transform;
+                if (statNumbers)
+                {
+                    StatisticsNumbers.instance.ModifyTotalEnemiesSpawned();
+                    if (roof)
+                    {
+                        StatisticsNumbers.instance.ModifyTotalRoofEnemiesSpawned();
+                    }
+                    else
+                    {
+                        StatisticsNumbers.instance.ModifyTotalWindowEnemiesSpawned();
+                    }
+                }
             }
         }
         else
