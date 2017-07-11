@@ -37,7 +37,7 @@ public class SniperEnemy : EnemyParentScript
     {
         if (!lockOn)
         {
-            GetDirectionToFace();
+            GetDirectionToFace("");
             mPos = monster.transform.position;
         }
 

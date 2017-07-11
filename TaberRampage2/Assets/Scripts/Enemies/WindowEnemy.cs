@@ -10,7 +10,7 @@ public class WindowEnemy : EnemyParentScript
 
         if (shootTimer >= fireRate)
         {
-            GetDirectionToFace();
+            GetDirectionToFace("");
             shootTimer = 0;
             Vector3 aimPoint = monster.transform.position;
             GameObject bullet = Instantiate(bulletPrfab, transform.position, transform.rotation) as GameObject;

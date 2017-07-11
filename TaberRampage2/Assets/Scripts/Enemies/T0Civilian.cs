@@ -11,7 +11,7 @@ public class T0Civilian : EnemyParentScript
     void Start ()
     {
         currentSpeed = walkSpeed;
-        GetDirectionToFace();
+        GetDirectionToFace("");
     }
 
     protected override void Move()

@@ -10,20 +10,31 @@ public class WalkingEnemy : T0Civilian
 
     protected override void MonsterInteraction()
     {
-        if (Vector3.Distance(monster.transform.position, transform.position) <= boldness)
+        
+        if (!triggered && Vector3.Distance(monster.transform.position, transform.position) <= boldness)
         {
+            GetDirectionToFace("Stop");
             triggered = true;
+            if (hasAnimator)
+            {
+                animator.SetBool("Triggered", true);
+            }
             currentSpeed = 0;
         }
         if (triggered && Vector3.Distance(monster.transform.position, transform.position) > boldness)
         {
+            GetDirectionToFace("Forward");
             triggered = false;
-            GetDirectionToFace();
+            if (hasAnimator)
+            {
+                animator.SetBool("Triggered", false);
+                animator.SetBool("Fire", false);
+            }            
             currentSpeed = walkSpeed;
         }
         if (triggered && Vector3.Distance(monster.transform.position, transform.position) <= boldness / 2)
         {
-            GetDirectionToFace();
+            GetDirectionToFace("Backward");
             currentSpeed = -walkSpeed;
         }
 
@@ -32,8 +43,8 @@ public class WalkingEnemy : T0Civilian
         //Rotate Arm
         if (triggered && arm != null)
         {
-            Vector3 aimZ = new Vector3(transform.position.x, transform.position.y, aimPoint.z);
-            Quaternion q = Quaternion.LookRotation(aimZ - transform.position);
+            Vector3 aimZ = new Vector3(transform.position.x, aimPoint.y, transform.position.z);
+            Quaternion q = Quaternion.Euler(aimZ - transform.position);
             float s = Mathf.Min(0.5f * Time.deltaTime, 1);
             arm.rotation = Quaternion.Lerp(arm.rotation, q, s);
         }
@@ -41,53 +52,65 @@ public class WalkingEnemy : T0Civilian
         if (triggered && !hasShield)
         {
             shootTimer += Time.deltaTime;
-
+            
             if (shootTimer >= fireRate)
             {
-                shootTimer = 0;
-                //RotateArm(aimPoint);
-                GameObject bullet = null;
-                if (bulletSpawn != null)
+                if (hasAnimator)
                 {
-                    bullet = Instantiate(bulletPrfab, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
+                    animator.SetBool("Fire", true);
+                    //Fire called by animation
                 }
                 else
                 {
-                    bullet = Instantiate(bulletPrfab, transform.position, transform.rotation) as GameObject;
+                    Fire();
                 }                
-                bullet.GetComponent<Projectile>().SetTarget(new Vector3(Mathf.Sign(direction.x), 0, 0));
-                if (hasShotgun)
-                {
-                    GameObject bulletu = null;
-                    if (bulletSpawn != null)
-                    {
-                        bulletu = Instantiate(bulletPrfab, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
-                    }
-                    else
-                    {
-                        bulletu = Instantiate(bulletPrfab, transform.position, transform.rotation) as GameObject;
-                    }
-                    aimPoint.y += SHOTSPREAD;
-                    bulletu.GetComponent<Projectile>().SetTarget(new Vector3(Mathf.Sign(direction.x), 0, 0));
-                    GameObject bulletd = null;
-                    if (bulletSpawn != null)
-                    {
-                        bulletd = Instantiate(bulletPrfab, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
-                    }
-                    else
-                    {
-                        bulletd = Instantiate(bulletPrfab, transform.position, transform.rotation) as GameObject;
-                    }
-                    aimPoint.y -= SHOTSPREAD * 2;
-                    bulletd.GetComponent<Projectile>().SetTarget(new Vector3(Mathf.Sign(direction.x), 0, 0));
-                }                
-            }
+            }            
         }
 
     }
 
-    void RotateArm(Vector3 target)
+    public void Fire()
     {
-        arm.eulerAngles = (transform.position - target).normalized;        
+        GameObject bullet = null;
+        if (bulletSpawn != null)
+        {
+            bullet = Instantiate(bulletPrfab, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
+        }
+        else
+        {
+            bullet = Instantiate(bulletPrfab, transform.position, transform.rotation) as GameObject;
+        }
+        bullet.GetComponent<Projectile>().SetTarget(new Vector3(Mathf.Sign(direction.x), 0, 0));
+        if (hasShotgun)
+        {
+            GameObject bulletu = null;
+            if (bulletSpawn != null)
+            {
+                bulletu = Instantiate(bulletPrfab, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
+            }
+            else
+            {
+                bulletu = Instantiate(bulletPrfab, transform.position, transform.rotation) as GameObject;
+            }
+            aimPoint.y += SHOTSPREAD;
+            bulletu.GetComponent<Projectile>().SetTarget(new Vector3(Mathf.Sign(direction.x), 0, 0));
+            GameObject bulletd = null;
+            if (bulletSpawn != null)
+            {
+                bulletd = Instantiate(bulletPrfab, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
+            }
+            else
+            {
+                bulletd = Instantiate(bulletPrfab, transform.position, transform.rotation) as GameObject;
+            }
+            aimPoint.y -= SHOTSPREAD * 2;
+            bulletd.GetComponent<Projectile>().SetTarget(new Vector3(Mathf.Sign(direction.x), 0, 0));
+        }
+
+        if (hasAnimator)
+        {
+            animator.SetBool("Fire", false);
+        }
+        shootTimer = 0;
     }
 }

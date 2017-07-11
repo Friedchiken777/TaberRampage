@@ -1,0 +1,346 @@
+fileFormatVersion: 2
+guid: 78d7976c492d4984891b86b1770ea329
+timeCreated: 1497316388
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: back1
+    100002: BArm2
+    100004: Body2
+    100006: //RootNode
+    100008: Corpse
+    100010: dying_main
+    100012: FArm2
+    100014: FootBCTRL1
+    100016: Gun
+    100018: Hat1
+    100020: Head2
+    100022: leg_foot:FootBCTRL1
+    100024: leg_foot:Shin1
+    100026: leg_foot:Shoe1
+    100028: leg_foot:Shoe2
+    100030: leg_foot:Sock
+    100032: leg_foot:Sock1
+    100034: leg_foot:Thigh1
+    100036: Shin1
+    100038: Shoe1
+    100040: Shoe2
+    100042: Sock
+    100044: Sock1
+    100046: Thigh1
+    100048: TieChop
+    400000: back1
+    400002: BArm2
+    400004: Body2
+    400006: //RootNode
+    400008: Corpse
+    400010: dying_main
+    400012: FArm2
+    400014: FootBCTRL1
+    400016: Gun
+    400018: Hat1
+    400020: Head2
+    400022: leg_foot:FootBCTRL1
+    400024: leg_foot:Shin1
+    400026: leg_foot:Shoe1
+    400028: leg_foot:Shoe2
+    400030: leg_foot:Sock
+    400032: leg_foot:Sock1
+    400034: leg_foot:Thigh1
+    400036: Shin1
+    400038: Shoe1
+    400040: Shoe2
+    400042: Sock
+    400044: Sock1
+    400046: Thigh1
+    400048: TieChop
+    2300000: BArm2
+    2300002: Body2
+    2300004: Corpse
+    2300006: FArm2
+    2300008: Gun
+    2300010: Hat1
+    2300012: Head2
+    2300014: leg_foot:Shin1
+    2300016: leg_foot:Shoe1
+    2300018: leg_foot:Shoe2
+    2300020: leg_foot:Sock
+    2300022: leg_foot:Sock1
+    2300024: leg_foot:Thigh1
+    2300026: Shin1
+    2300028: Shoe1
+    2300030: Shoe2
+    2300032: Sock
+    2300034: Sock1
+    2300036: Thigh1
+    2300038: TieChop
+    3300000: BArm2
+    3300002: Body2
+    3300004: Corpse
+    3300006: FArm2
+    3300008: Gun
+    3300010: Hat1
+    3300012: Head2
+    3300014: leg_foot:Shin1
+    3300016: leg_foot:Shoe1
+    3300018: leg_foot:Shoe2
+    3300020: leg_foot:Sock
+    3300022: leg_foot:Sock1
+    3300024: leg_foot:Thigh1
+    3300026: Shin1
+    3300028: Shoe1
+    3300030: Shoe2
+    3300032: Sock
+    3300034: Sock1
+    3300036: Thigh1
+    3300038: TieChop
+    4300000: Hat1
+    4300002: Body2
+    4300004: Head2
+    4300006: FArm2
+    4300008: BArm2
+    4300010: leg_foot:Thigh1
+    4300012: leg_foot:Shin1
+    4300014: leg_foot:Shoe1
+    4300016: leg_foot:Sock
+    4300018: leg_foot:Shoe2
+    4300020: leg_foot:Sock1
+    4300022: Thigh1
+    4300024: Shin1
+    4300026: Shoe1
+    4300028: Sock
+    4300030: Shoe2
+    4300032: Sock1
+    4300034: TieChop
+    4300036: Gun
+    4300038: Corpse
+    7400000: Cop_Dying
+    7400002: Cop_Dead
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Cop_Dying
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back1
+        weight: 1
+      - path: dying_main
+        weight: 1
+      - path: dying_main/Body2
+        weight: 1
+      - path: dying_main/Body2/BArm2
+        weight: 1
+      - path: dying_main/Body2/FArm2
+        weight: 1
+      - path: dying_main/Body2/Head2
+        weight: 1
+      - path: dying_main/Body2/leg_foot:Thigh1
+        weight: 1
+      - path: dying_main/Body2/leg_foot:Thigh1/leg_foot:Shin1
+        weight: 1
+      - path: dying_main/Body2/leg_foot:Thigh1/leg_foot:Shin1/leg_foot:FootBCTRL1
+        weight: 1
+      - path: dying_main/Body2/leg_foot:Thigh1/leg_foot:Shin1/leg_foot:FootBCTRL1/leg_foot:Shoe1
+        weight: 1
+      - path: dying_main/Body2/leg_foot:Thigh1/leg_foot:Shin1/leg_foot:FootBCTRL1/leg_foot:Shoe1/leg_foot:Sock
+        weight: 1
+      - path: dying_main/Body2/leg_foot:Thigh1/leg_foot:Shin1/leg_foot:FootBCTRL1/leg_foot:Shoe2
+        weight: 1
+      - path: dying_main/Body2/leg_foot:Thigh1/leg_foot:Shin1/leg_foot:FootBCTRL1/leg_foot:Shoe2/leg_foot:Sock1
+        weight: 1
+      - path: dying_main/Body2/Thigh1
+        weight: 1
+      - path: dying_main/Body2/Thigh1/Shin1
+        weight: 1
+      - path: dying_main/Body2/Thigh1/Shin1/FootBCTRL1
+        weight: 1
+      - path: dying_main/Body2/Thigh1/Shin1/FootBCTRL1/Shoe1
+        weight: 1
+      - path: dying_main/Body2/Thigh1/Shin1/FootBCTRL1/Shoe1/Sock
+        weight: 1
+      - path: dying_main/Body2/Thigh1/Shin1/FootBCTRL1/Shoe2
+        weight: 1
+      - path: dying_main/Body2/Thigh1/Shin1/FootBCTRL1/Shoe2/Sock1
+        weight: 1
+      - path: dying_main/Corpse
+        weight: 1
+      - path: dying_main/Gun
+        weight: 1
+      - path: dying_main/TieChop
+        weight: 1
+      - path: Hat1
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Cop_Dead
+      takeName: Take 001
+      firstFrame: 39
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back1
+        weight: 1
+      - path: dying_main
+        weight: 1
+      - path: dying_main/Body2
+        weight: 1
+      - path: dying_main/Body2/BArm2
+        weight: 1
+      - path: dying_main/Body2/FArm2
+        weight: 1
+      - path: dying_main/Body2/Head2
+        weight: 1
+      - path: dying_main/Body2/leg_foot:Thigh1
+        weight: 1
+      - path: dying_main/Body2/leg_foot:Thigh1/leg_foot:Shin1
+        weight: 1
+      - path: dying_main/Body2/leg_foot:Thigh1/leg_foot:Shin1/leg_foot:FootBCTRL1
+        weight: 1
+      - path: dying_main/Body2/leg_foot:Thigh1/leg_foot:Shin1/leg_foot:FootBCTRL1/leg_foot:Shoe1
+        weight: 1
+      - path: dying_main/Body2/leg_foot:Thigh1/leg_foot:Shin1/leg_foot:FootBCTRL1/leg_foot:Shoe1/leg_foot:Sock
+        weight: 1
+      - path: dying_main/Body2/leg_foot:Thigh1/leg_foot:Shin1/leg_foot:FootBCTRL1/leg_foot:Shoe2
+        weight: 1
+      - path: dying_main/Body2/leg_foot:Thigh1/leg_foot:Shin1/leg_foot:FootBCTRL1/leg_foot:Shoe2/leg_foot:Sock1
+        weight: 1
+      - path: dying_main/Body2/Thigh1
+        weight: 1
+      - path: dying_main/Body2/Thigh1/Shin1
+        weight: 1
+      - path: dying_main/Body2/Thigh1/Shin1/FootBCTRL1
+        weight: 1
+      - path: dying_main/Body2/Thigh1/Shin1/FootBCTRL1/Shoe1
+        weight: 1
+      - path: dying_main/Body2/Thigh1/Shin1/FootBCTRL1/Shoe1/Sock
+        weight: 1
+      - path: dying_main/Body2/Thigh1/Shin1/FootBCTRL1/Shoe2
+        weight: 1
+      - path: dying_main/Body2/Thigh1/Shin1/FootBCTRL1/Shoe2/Sock1
+        weight: 1
+      - path: dying_main/Corpse
+        weight: 1
+      - path: dying_main/Gun
+        weight: 1
+      - path: dying_main/TieChop
+        weight: 1
+      - path: Hat1
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

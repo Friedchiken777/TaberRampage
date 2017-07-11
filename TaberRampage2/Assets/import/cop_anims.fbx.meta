@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: e0c411643deee3140aa54a24366d38a2
+timeCreated: 1497237794
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arm_Controls
+    100002: back1
+    100004: BArm1
+    100006: Body1
+    100008: Body_offset
+    100010: Collar
+    100012: //RootNode
+    100014: FArm1
+    100016: FootBCTRL
+    100018: FootBCTRL1
+    100020: Hat
+    100022: Head1
+    100024: Main
+    100026: Pop1
+    100028: Pop2
+    100030: Pop3
+    100032: Shin1
+    100034: Shin1 1
+    100036: Shoe1
+    100038: Shoe1 1
+    100040: Shoe2
+    100042: Shoe2 1
+    100044: Shoulder
+    100046: Sock
+    100048: Sock 1
+    100050: Sock1
+    100052: Sock1 1
+    100054: Thigh1
+    100056: Thigh2
+    400000: Arm_Controls
+    400002: back1
+    400004: BArm1
+    400006: Body1
+    400008: Body_offset
+    400010: Collar
+    400012: //RootNode
+    400014: FArm1
+    400016: FootBCTRL
+    400018: FootBCTRL1
+    400020: Hat
+    400022: Head1
+    400024: Main
+    400026: Pop1
+    400028: Pop2
+    400030: Pop3
+    400032: Shin1
+    400034: Shin1 1
+    400036: Shoe1
+    400038: Shoe1 1
+    400040: Shoe2
+    400042: Shoe2 1
+    400044: Shoulder
+    400046: Sock
+    400048: Sock 1
+    400050: Sock1
+    400052: Sock1 1
+    400054: Thigh1
+    400056: Thigh2
+    2300000: BArm1
+    2300002: Body1
+    2300004: Collar
+    2300006: FArm1
+    2300008: Hat
+    2300010: Head1
+    2300012: Pop1
+    2300014: Pop2
+    2300016: Pop3
+    2300018: Shin1
+    2300020: Shin1 1
+    2300022: Shoe1
+    2300024: Shoe1 1
+    2300026: Shoe2
+    2300028: Shoe2 1
+    2300030: Shoulder
+    2300032: Sock
+    2300034: Sock 1
+    2300036: Sock1
+    2300038: Sock1 1
+    2300040: Thigh1
+    2300042: Thigh2
+    3300000: BArm1
+    3300002: Body1
+    3300004: Collar
+    3300006: FArm1
+    3300008: Hat
+    3300010: Head1
+    3300012: Pop1
+    3300014: Pop2
+    3300016: Pop3
+    3300018: Shin1
+    3300020: Shin1 1
+    3300022: Shoe1
+    3300024: Shoe1 1
+    3300026: Shoe2
+    3300028: Shoe2 1
+    3300030: Shoulder
+    3300032: Sock
+    3300034: Sock 1
+    3300036: Sock1
+    3300038: Sock1 1
+    3300040: Thigh1
+    3300042: Thigh2
+    4300000: Body1
+    4300002: Thigh1
+    4300004: Shin1
+    4300006: Shoulder
+    4300008: FArm1
+    4300010: Pop2
+    4300012: Pop1
+    4300014: Pop3
+    4300016: BArm1
+    4300018: Collar
+    4300020: Head1
+    4300022: Hat
+    4300024: Thigh2
+    4300026: Shin1
+    4300028: Shoe1
+    4300030: Sock
+    4300032: Shoe2
+    4300034: Sock1
+    4300036: Shoe1
+    4300038: Sock
+    4300040: Shoe2
+    4300042: Sock1
+    7400000: Cop_Run
+    7400002: Cop_Fire
+    7400004: Cop_Fire2Idle
+    7400006: Cop_Idle
+    7400008: Cop_Idle2Fire
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: Main
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Cop_Run
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 21
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back1
+        weight: 1
+      - path: Main
+        weight: 1
+      - path: Main/Body_offset
+        weight: 1
+      - path: Main/Body_offset/Body1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/BArm1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop2
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop3
+        weight: 1
+      - path: Main/Body_offset/Body1/Collar
+        weight: 1
+      - path: Main/Body_offset/Body1/Head1
+        weight: 1
+      - path: Main/Body_offset/Body1/Head1/Hat
+        weight: 1
+      - path: Main/Body_offset/Body1/Shoulder
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh1
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh1/Shin1
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh2
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh2/Shin1 1
+        weight: 1
+      - path: Main/FootBCTRL
+        weight: 1
+      - path: Main/FootBCTRL/Shoe1
+        weight: 1
+      - path: Main/FootBCTRL/Shoe1/Sock
+        weight: 1
+      - path: Main/FootBCTRL/Shoe2
+        weight: 1
+      - path: Main/FootBCTRL/Shoe2/Sock1
+        weight: 1
+      - path: Main/FootBCTRL1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe1 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe1 1/Sock 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe2 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe2 1/Sock1 1
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Cop_Fire
+      takeName: Take 001
+      firstFrame: 22
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back1
+        weight: 1
+      - path: Main
+        weight: 1
+      - path: Main/Body_offset
+        weight: 1
+      - path: Main/Body_offset/Body1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/BArm1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop2
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop3
+        weight: 1
+      - path: Main/Body_offset/Body1/Collar
+        weight: 1
+      - path: Main/Body_offset/Body1/Head1
+        weight: 1
+      - path: Main/Body_offset/Body1/Head1/Hat
+        weight: 1
+      - path: Main/Body_offset/Body1/Shoulder
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh1
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh1/Shin1
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh2
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh2/Shin1 1
+        weight: 1
+      - path: Main/FootBCTRL
+        weight: 1
+      - path: Main/FootBCTRL/Shoe1
+        weight: 1
+      - path: Main/FootBCTRL/Shoe1/Sock
+        weight: 1
+      - path: Main/FootBCTRL/Shoe2
+        weight: 1
+      - path: Main/FootBCTRL/Shoe2/Sock1
+        weight: 1
+      - path: Main/FootBCTRL1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe1 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe1 1/Sock 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe2 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe2 1/Sock1 1
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Cop_Fire2Idle
+      takeName: Take 001
+      firstFrame: 31
+      lastFrame: 34
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back1
+        weight: 1
+      - path: Main
+        weight: 1
+      - path: Main/Body_offset
+        weight: 1
+      - path: Main/Body_offset/Body1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/BArm1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop2
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop3
+        weight: 1
+      - path: Main/Body_offset/Body1/Collar
+        weight: 1
+      - path: Main/Body_offset/Body1/Head1
+        weight: 1
+      - path: Main/Body_offset/Body1/Head1/Hat
+        weight: 1
+      - path: Main/Body_offset/Body1/Shoulder
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh1
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh1/Shin1
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh2
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh2/Shin1 1
+        weight: 1
+      - path: Main/FootBCTRL
+        weight: 1
+      - path: Main/FootBCTRL/Shoe1
+        weight: 1
+      - path: Main/FootBCTRL/Shoe1/Sock
+        weight: 1
+      - path: Main/FootBCTRL/Shoe2
+        weight: 1
+      - path: Main/FootBCTRL/Shoe2/Sock1
+        weight: 1
+      - path: Main/FootBCTRL1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe1 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe1 1/Sock 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe2 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe2 1/Sock1 1
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Cop_Idle
+      takeName: Take 001
+      firstFrame: 34
+      lastFrame: 54
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back1
+        weight: 1
+      - path: Main
+        weight: 1
+      - path: Main/Body_offset
+        weight: 1
+      - path: Main/Body_offset/Body1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/BArm1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop2
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop3
+        weight: 1
+      - path: Main/Body_offset/Body1/Collar
+        weight: 1
+      - path: Main/Body_offset/Body1/Head1
+        weight: 1
+      - path: Main/Body_offset/Body1/Head1/Hat
+        weight: 1
+      - path: Main/Body_offset/Body1/Shoulder
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh1
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh1/Shin1
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh2
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh2/Shin1 1
+        weight: 1
+      - path: Main/FootBCTRL
+        weight: 1
+      - path: Main/FootBCTRL/Shoe1
+        weight: 1
+      - path: Main/FootBCTRL/Shoe1/Sock
+        weight: 1
+      - path: Main/FootBCTRL/Shoe2
+        weight: 1
+      - path: Main/FootBCTRL/Shoe2/Sock1
+        weight: 1
+      - path: Main/FootBCTRL1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe1 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe1 1/Sock 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe2 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe2 1/Sock1 1
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Cop_Idle2Fire
+      takeName: Take 001
+      firstFrame: 54
+      lastFrame: 58
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back1
+        weight: 1
+      - path: Main
+        weight: 1
+      - path: Main/Body_offset
+        weight: 1
+      - path: Main/Body_offset/Body1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/BArm1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop1
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop2
+        weight: 1
+      - path: Main/Body_offset/Body1/Arm_Controls/FArm1/Pop3
+        weight: 1
+      - path: Main/Body_offset/Body1/Collar
+        weight: 1
+      - path: Main/Body_offset/Body1/Head1
+        weight: 1
+      - path: Main/Body_offset/Body1/Head1/Hat
+        weight: 1
+      - path: Main/Body_offset/Body1/Shoulder
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh1
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh1/Shin1
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh2
+        weight: 1
+      - path: Main/Body_offset/Body1/Thigh2/Shin1 1
+        weight: 1
+      - path: Main/FootBCTRL
+        weight: 1
+      - path: Main/FootBCTRL/Shoe1
+        weight: 1
+      - path: Main/FootBCTRL/Shoe1/Sock
+        weight: 1
+      - path: Main/FootBCTRL/Shoe2
+        weight: 1
+      - path: Main/FootBCTRL/Shoe2/Sock1
+        weight: 1
+      - path: Main/FootBCTRL1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe1 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe1 1/Sock 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe2 1
+        weight: 1
+      - path: Main/FootBCTRL1/Shoe2 1/Sock1 1
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -35,6 +35,11 @@ public class EnemyParentScript : MonoBehaviour
 
     bool hasSpriteRenderer;
 
+    Vector3 startingValues;
+
+    protected Animator animator;
+    protected bool hasAnimator;
+
     // Use this for initialization
     protected void Awake ()
     {
@@ -42,6 +47,8 @@ public class EnemyParentScript : MonoBehaviour
         currentHealth = maxHealth;
         statNumbers = (StatisticsNumbers.instance != null);
         hasSpriteRenderer = GetComponent<SpriteRenderer>() != null;
+        startingValues = transform.localScale;
+        SetAnimator();
     }
 
 	
@@ -111,13 +118,13 @@ public class EnemyParentScript : MonoBehaviour
         }
     }
 
-    protected bool GetDirectionToFace()
+    protected bool GetDirectionToFace(string debug)
     {
-        StartCoroutine(DirectionChangeWithDelay());
+        StartCoroutine(DirectionChangeWithDelay(debug));
         return switched;
     }
 
-    IEnumerator DirectionChangeWithDelay()
+    IEnumerator DirectionChangeWithDelay(string debug)
     {
         switched = false;
         //determine which way to walk to get to monster
@@ -128,35 +135,54 @@ public class EnemyParentScript : MonoBehaviour
         if (distance != 0)
         {
             direction = heading / distance;
+            print(debug + " " + direction);
             if (direction.x != lastXDirection)
             {
                 switched = true;
-            }
-            lastXDirection = direction.x;
-            //Face enemy in right direction
-            yield return new WaitForSeconds(turnDelay);
-            if (Mathf.Sign(direction.x) >= 0)
-            {
-                if (hasSpriteRenderer)
+
+                lastXDirection = direction.x;
+                //Face enemy in right direction
+                yield return new WaitForSeconds(turnDelay);
+                if (Mathf.Sign(direction.x) >= 0)
                 {
-                    GetComponent<SpriteRenderer>().flipX = true;
+                    if (hasSpriteRenderer)
+                    {
+                        GetComponent<SpriteRenderer>().flipX = true;
+                    }
+                    else
+                    {
+                        transform.localScale = new Vector3(startingValues.x, startingValues.y, startingValues.z);
+                        print("positive "+transform.localScale);
+                    }
                 }
                 else
                 {
-                    transform.localScale = new Vector3(-1, 1, 1);
+                    if (hasSpriteRenderer)
+                    {
+                        GetComponent<SpriteRenderer>().flipX = false;
+                    }
+                    else
+                    {
+                        transform.localScale = new Vector3(-startingValues.x, startingValues.y, startingValues.z);
+                        print("negative " + transform.localScale);
+                    }
                 }
+                print("START" + startingValues);
             }
-            else
-            {
-                if (hasSpriteRenderer)
-                {
-                    GetComponent<SpriteRenderer>().flipX = false;
-                }
-                else
-                {
-                    transform.localScale = new Vector3(1, 1, 1);
-                }
-            }
+        }
+    }
+
+    protected void SetAnimator()
+    {
+        if (this.GetComponentInChildren<Animator>() != null)
+        {
+            animator = this.gameObject.GetComponentInChildren<Animator>();
+            hasAnimator = true;
+        }
+        else
+        {
+            hasAnimator = false;
+            print(gameObject.name + ": No animator Found...");
         }
     }
 
