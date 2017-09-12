@@ -2,11 +2,7 @@
 using System.Collections;
 
 public class WalkingEnemy : T0Civilian
-{
-
-    [SerializeField]
-    Transform bulletSpawn, arm;
-    Vector3 aimPoint;
+{   
 
     protected override void MonsterInteraction()
     {
@@ -41,15 +37,25 @@ public class WalkingEnemy : T0Civilian
         aimPoint = monster.transform.position;
 
         //Rotate Arm
-        if (triggered && arm != null)
+        if (triggered && (aimArm != null))
         {
-            Vector3 aimZ = new Vector3(transform.position.x, aimPoint.y, transform.position.z);
-            Quaternion q = Quaternion.Euler(aimZ - transform.position);
-            float s = Mathf.Min(0.5f * Time.deltaTime, 1);
-            arm.rotation = Quaternion.Lerp(arm.rotation, q, s);
+            Vector3 aimZ = new Vector3(aimPoint.x, aimPoint.y, armPosition.position.z);
+            float sign;
+            if (transform.localScale.x < 0)
+            {
+                sign = (aimPoint.y > armPosition.position.y) ? -1.0f : 1.0f;
+                aimArm.angleAim = (Vector3.Angle(Vector3.right, (armPosition.position - aimZ)) * sign);
+            }
+            else
+            {
+                sign = (aimPoint.y < armPosition.position.y) ? -1.0f : 1.0f;
+                aimArm.angleAim = (Vector3.Angle(Vector3.right, (aimZ - armPosition.position)) * sign);
+            }
+            
+
         }
 
-        if (triggered && !hasShield)
+        if (triggered)
         {
             shootTimer += Time.deltaTime;
             
@@ -69,48 +75,5 @@ public class WalkingEnemy : T0Civilian
 
     }
 
-    public void Fire()
-    {
-        GameObject bullet = null;
-        if (bulletSpawn != null)
-        {
-            bullet = Instantiate(bulletPrfab, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
-        }
-        else
-        {
-            bullet = Instantiate(bulletPrfab, transform.position, transform.rotation) as GameObject;
-        }
-        bullet.GetComponent<Projectile>().SetTarget(new Vector3(Mathf.Sign(direction.x), 0, 0));
-        if (hasShotgun)
-        {
-            GameObject bulletu = null;
-            if (bulletSpawn != null)
-            {
-                bulletu = Instantiate(bulletPrfab, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
-            }
-            else
-            {
-                bulletu = Instantiate(bulletPrfab, transform.position, transform.rotation) as GameObject;
-            }
-            aimPoint.y += SHOTSPREAD;
-            bulletu.GetComponent<Projectile>().SetTarget(new Vector3(Mathf.Sign(direction.x), 0, 0));
-            GameObject bulletd = null;
-            if (bulletSpawn != null)
-            {
-                bulletd = Instantiate(bulletPrfab, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
-            }
-            else
-            {
-                bulletd = Instantiate(bulletPrfab, transform.position, transform.rotation) as GameObject;
-            }
-            aimPoint.y -= SHOTSPREAD * 2;
-            bulletd.GetComponent<Projectile>().SetTarget(new Vector3(Mathf.Sign(direction.x), 0, 0));
-        }
-
-        if (hasAnimator)
-        {
-            animator.SetBool("Fire", false);
-        }
-        shootTimer = 0;
-    }
+   
 }

@@ -7,7 +7,7 @@ public class EnemyParentScript : MonoBehaviour
     protected const float SHOTSPREAD = 1f;
 
     [SerializeField]
-    protected float maxHealth, walkSpeed, runSpeed, boldness, foodValue, stunDuration, stunForce, turnDelay, terrorValue;
+    protected float maxHealth, walkSpeed, runSpeed, boldness, foodValue, stunDuration, stunForce, turnDelay, terrorValue, deathCooldown;
 
     [SerializeField]
     protected float fireRate;
@@ -17,7 +17,16 @@ public class EnemyParentScript : MonoBehaviour
     protected bool hasShield, hasShotgun;
 
     [SerializeField]
-    protected GameObject bulletPrfab;
+    protected GameObject bulletPrfab, mainBody, deathBody;
+
+    [SerializeField]
+    protected Collider hitbox;
+
+    [SerializeField]
+    protected Transform bulletSpawn, armPosition;
+    protected Vector3 aimPoint;
+    [SerializeField]
+    protected Aim_Bodyparts aimArm;
 
     protected MonsterController monster;
     protected float currentHealth, currentSpeed;
@@ -26,7 +35,7 @@ public class EnemyParentScript : MonoBehaviour
     protected float lastXDirection;
     protected bool switched;
 
-    protected bool attacked;
+    protected bool attacked, idle, dead;
     protected float attackTimer;
 
     protected bool statNumbers;
@@ -44,6 +53,8 @@ public class EnemyParentScript : MonoBehaviour
     protected void Awake ()
     {
         monster = GameObject.FindObjectOfType<MonsterController>();
+        idle = false;
+        dead = false;
         currentHealth = maxHealth;
         statNumbers = (StatisticsNumbers.instance != null);
         hasSpriteRenderer = GetComponent<SpriteRenderer>() != null;
@@ -55,20 +66,23 @@ public class EnemyParentScript : MonoBehaviour
 	// Update is called once per frame
 	protected void Update ()
     {
-        Move();
-
-        MonsterInteraction();
-
-        SelfDestruct();
-
-        //delays time between attacks
-        if (attacked)
+        if (!dead)
         {
-            attackTimer += Time.deltaTime;
-            if (attackTimer > 0.1f)
+            Move();
+
+            MonsterInteraction();
+
+            SelfDestruct();
+
+            //delays time between attacks
+            if (attacked)
             {
-                attacked = false;
-                attackTimer = 0;
+                attackTimer += Time.deltaTime;
+                if (attackTimer > 0.15f)
+                {
+                    attacked = false;
+                    attackTimer = 0;
+                }
             }
         }
         
@@ -76,7 +90,7 @@ public class EnemyParentScript : MonoBehaviour
 
     protected void OnTriggerEnter(Collider col)
     {
-        if (!attacked)
+        if (!attacked && !dead)
         {
             //print(col.gameObject.name);
             if (col.gameObject.GetComponent<MonsterController>() != null)
@@ -86,6 +100,7 @@ public class EnemyParentScript : MonoBehaviour
                 if (hasShield && currentHealth > 0)
                 {
                     col.GetComponent<MonsterController>().StunPlayerH(stunDuration, stunForce);
+                    gameObject.GetComponent<StatePartSwap>().TriggerSwap();
                 }
                 else if (currentHealth <= 0)
                 {
@@ -103,7 +118,18 @@ public class EnemyParentScript : MonoBehaviour
                         }
                         statNumbers = false;
                     }
-                    Destroy(this.gameObject);
+                    Destroy(this.gameObject, deathCooldown);
+                    dead = true;
+                    if (mainBody != null && deathBody != null)
+                    {
+                        mainBody.SetActive(false);
+                        deathBody.SetActive(true);
+                        hitbox.enabled = false;
+                        if (gameObject.GetComponent<CharacterController>() != null)
+                        {
+                            gameObject.GetComponent<CharacterController>().enabled = false;
+                        }
+                    }
                 }
             }
             attacked = true;
@@ -135,7 +161,7 @@ public class EnemyParentScript : MonoBehaviour
         if (distance != 0)
         {
             direction = heading / distance;
-            print(debug + " " + direction);
+            //print(debug + " " + direction);
             if (direction.x != lastXDirection)
             {
                 switched = true;
@@ -152,7 +178,7 @@ public class EnemyParentScript : MonoBehaviour
                     else
                     {
                         transform.localScale = new Vector3(startingValues.x, startingValues.y, startingValues.z);
-                        print("positive "+transform.localScale);
+                        //print("positive "+transform.localScale);
                     }
                 }
                 else
@@ -164,10 +190,10 @@ public class EnemyParentScript : MonoBehaviour
                     else
                     {
                         transform.localScale = new Vector3(-startingValues.x, startingValues.y, startingValues.z);
-                        print("negative " + transform.localScale);
+                        //print("negative " + transform.localScale);
                     }
                 }
-                print("START" + startingValues);
+                //print("START" + startingValues);
             }
         }
     }
@@ -182,7 +208,7 @@ public class EnemyParentScript : MonoBehaviour
         else
         {
             hasAnimator = false;
-            print(gameObject.name + ": No animator Found...");
+            Debug.LogError(gameObject.name + ": No animator Found...");
         }
     }
 
@@ -194,6 +220,61 @@ public class EnemyParentScript : MonoBehaviour
     protected virtual void MonsterInteraction()
     {
         //Overload in Children
+    }
+
+    public void Fire()
+    {
+        GameObject bullet = null;
+        if (bulletSpawn != null)
+        {
+            bullet = Instantiate(bulletPrfab, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
+        }
+        else
+        {
+            bullet = Instantiate(bulletPrfab, transform.position, transform.rotation) as GameObject;
+        }
+        bullet.GetComponent<Projectile>().SetTarget(new Vector3(Mathf.Sign(direction.x), 0, 0));
+        if (hasShotgun)
+        {
+            GameObject bulletu = null;
+            if (bulletSpawn != null)
+            {
+                bulletu = Instantiate(bulletPrfab, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
+            }
+            else
+            {
+                bulletu = Instantiate(bulletPrfab, transform.position, transform.rotation) as GameObject;
+            }
+            aimPoint.y += SHOTSPREAD;
+            bulletu.GetComponent<Projectile>().SetTarget(new Vector3(Mathf.Sign(direction.x), 0, 0));
+            GameObject bulletd = null;
+            if (bulletSpawn != null)
+            {
+                bulletd = Instantiate(bulletPrfab, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
+            }
+            else
+            {
+                bulletd = Instantiate(bulletPrfab, transform.position, transform.rotation) as GameObject;
+            }
+            aimPoint.y -= SHOTSPREAD * 2;
+            bulletd.GetComponent<Projectile>().SetTarget(new Vector3(Mathf.Sign(direction.x), 0, 0));
+        }
+
+        if (hasAnimator)
+        {
+            animator.SetBool("Fire", false);
+        }
+        shootTimer = 0;
+    }
+
+    public void IsIdleTrue()
+    {
+        idle = true;
+    }
+
+    public void IsIdleFalse()
+    {
+        idle = false;
     }
 
     public enum EnemySpawnTypes

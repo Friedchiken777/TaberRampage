@@ -16,7 +16,17 @@ public class T0Civilian : EnemyParentScript
 
     protected override void Move()
     {
-        gameObject.GetComponent<CharacterController>().Move(direction * currentSpeed * Time.deltaTime);
+        if (hasAnimator)
+        {
+            if (!idle)
+            {
+                gameObject.GetComponent<CharacterController>().Move(direction * currentSpeed * Time.deltaTime);
+            }
+        }
+        else
+        {
+            gameObject.GetComponent<CharacterController>().Move(direction * currentSpeed * Time.deltaTime);
+        }        
     }
 
     protected override void MonsterInteraction()

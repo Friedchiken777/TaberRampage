@@ -470,7 +470,7 @@ public class CitySpawnManager : MonoBehaviour
                                                 {
                                                     if (hit.collider.gameObject.GetComponent<SignChunk>())
                                                     {
-                                                        print("hit sign +");
+                                                        //print("hit sign +");
                                                         continue;
                                                     }
                                                 }
@@ -478,7 +478,7 @@ public class CitySpawnManager : MonoBehaviour
                                                 {
                                                     if (hit.collider.gameObject.GetComponent<SignChunk>())
                                                     {
-                                                        print("hit sign -");
+                                                        //print("hit sign -");
                                                         continue;
                                                     }
                                                 }
