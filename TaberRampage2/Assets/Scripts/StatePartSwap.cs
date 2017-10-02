@@ -13,15 +13,19 @@ public class StatePartSwap : MonoBehaviour {
     public Transform Part6; //shield middle
     public Transform Part7; //free arm
 
-//    private Vector3 P1pos;
-//    private Vector3 P2pos;
-//    private Vector3 P3pos;
-//    private Vector3 P4pos;
-//    private Vector3 P5pos;
-//    private Vector3 P6pos;
-//    private Vector3 P7pos;
 
-	void Start () 
+    [SerializeField]
+    protected Shield shield;
+
+    //    private Vector3 P1pos;
+    //    private Vector3 P2pos;
+    //    private Vector3 P3pos;
+    //    private Vector3 P4pos;
+    //    private Vector3 P5pos;
+    //    private Vector3 P6pos;
+    //    private Vector3 P7pos;
+
+    void Start () 
     {
         state = 0;
 
@@ -67,6 +71,7 @@ public class StatePartSwap : MonoBehaviour {
                     Part1.transform.Translate(new Vector3(0,0,10000));
                     Part6.transform.Translate(new Vector3(0,0,10000));
                     Part7.transform.Translate(new Vector3(0,0,-10000));
+                    Destroy(shield.gameObject);
                     break;
                 }
             default: //undamaged

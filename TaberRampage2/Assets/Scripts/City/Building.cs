@@ -4,15 +4,23 @@ using System.Collections.Generic;
 
 public class Building : MonoBehaviour
 {
+    const float CHUNKSIZE = 2.048f;                     //size of standard building chunk
     const float PERCENTDAMAGEFORDEATH = .65f;
     const float TIMETODEATH = 30;
     const float TERRORBONUSMULTIPLIER = 2;
 
     public bool heroBuilding;
 
-    public List<GameObject> groundKit, groundBorderKit, middleKit, middleBorderKit, roofKit, roofBorderKit, skyKit, signKit;
+    public List<GameObject> groundKit, groundBorderKit, middleKit, middleBorderKit, roofKit, roofBorderKit, skyKit, signKit, rubbleKit, rubbleBorderKit;
 
     public float maxHealth, currentHealth;
+
+    public GameObject rubblePile;
+
+    Vector3 rubbleEndPoint;
+
+    public Vector3 windowEnemyOffset;
+    public float[] alternateXValuesforWindowEnemies;
 
     float fallRate;
 
@@ -24,6 +32,10 @@ public class Building : MonoBehaviour
 	void Awake ()
     {
         transform.name = transform.name.Replace("(Clone)", "").Trim();
+        rubblePile = new GameObject();
+        rubblePile.name = gameObject.name + "RubblePile";
+        rubblePile.transform.position = new Vector3(transform.position.x, transform.position.y - CHUNKSIZE, transform.position.z);
+        rubbleEndPoint = new Vector3(rubblePile.transform.position.x, rubblePile.transform.position.y + CHUNKSIZE, rubblePile.transform.position.z);
         foreach (GameObject g in Resources.LoadAll("TestStuff/Buildings/" + gameObject.name + "/GroundFloor", typeof(GameObject)))
         {
             //Debug.Log("prefab found: " + g.name);
@@ -64,7 +76,17 @@ public class Building : MonoBehaviour
             //Debug.Log("prefab found: " + g.name);
             signKit.Add(g);
         }
-        died = false;
+        foreach (GameObject g in Resources.LoadAll("TestStuff/Buildings/" + gameObject.name + "/Rubble", typeof(GameObject)))
+        {
+            //Debug.Log("prefab found: " + g.name);
+            rubbleKit.Add(g);
+        }
+        foreach (GameObject g in Resources.LoadAll("TestStuff/Buildings/" + gameObject.name + "/RubbleBorder", typeof(GameObject)))
+        {
+            //Debug.Log("prefab found: " + g.name);
+            rubbleBorderKit.Add(g);
+        }
+        died = false;       
     }
 
     private void Start()
@@ -93,6 +115,8 @@ public class Building : MonoBehaviour
                 statNumbers = false;
             }
         }
-        transform.position = new Vector3(transform.position.x, transform.position.y - Time.deltaTime, transform.position.z);        
+        transform.position = new Vector3(transform.position.x, transform.position.y - Time.deltaTime, transform.position.z);
+        
+        rubblePile.transform.position = Vector3.Lerp(rubblePile.transform.position, rubbleEndPoint, Time.deltaTime / CHUNKSIZE);
     }
 }

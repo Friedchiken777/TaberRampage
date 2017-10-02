@@ -30,7 +30,7 @@ public class CitySpawnManager : MonoBehaviour
 
     public List<GameObject> cityGroundsSpawnable, cityGrounds, buildings;
 
-    GameObject newestChunk, lowerFloor;
+    GameObject newestChunk, lowerFloor, rubble;
 
     bool statNumbers, previousOverflow;
     int nextStreetIn;
@@ -268,34 +268,48 @@ public class CitySpawnManager : MonoBehaviour
             for (int i = 1; i <= buildingWidth; i++)
             {
                 //Spawn Bottom Floor (Special because of door)
+                
                 //spawn left border
                 if (i == 1)
                 {
                     int groundPickerBL = Random.Range(0, foundation.GetComponent<Building>().groundBorderKit.Count / 2);
+                    int rubblePickerBL = Random.Range(0, foundation.GetComponent<Building>().rubbleBorderKit.Count / 2);
                     newestChunk = Instantiate(foundation.GetComponent<Building>().groundBorderKit[groundPickerBL], foundation.transform.position, foundation.transform.rotation) as GameObject;
                     newestChunk.GetComponent<BuildingChunk>().westSideBorder = true;
+                    rubble = Instantiate(foundation.GetComponent<Building>().rubbleBorderKit[rubblePickerBL], foundation.GetComponent<Building>().rubblePile.transform.position, foundation.transform.rotation) as GameObject;
                 }
                 //spawn right border
                 else if (i == buildingWidth)
                 {
                     int groundPickerBR = Random.Range(foundation.GetComponent<Building>().groundBorderKit.Count / 2 , foundation.GetComponent<Building>().groundBorderKit.Count);
+                    int rubblePickerBR = Random.Range(foundation.GetComponent<Building>().rubbleBorderKit.Count / 2, foundation.GetComponent<Building>().rubbleBorderKit.Count);
                     Vector3 spawnSpot = new Vector3((newestChunk.transform.position.x + CHUNKSIZE), newestChunk.transform.position.y, newestChunk.transform.position.z);
                     newestChunk = Instantiate(foundation.GetComponent<Building>().groundBorderKit[groundPickerBR], spawnSpot, newestChunk.transform.rotation) as GameObject;
+                    spawnSpot = new Vector3((newestChunk.transform.position.x), newestChunk.transform.position.y - CHUNKSIZE, newestChunk.transform.position.z);
+                    rubble = Instantiate(foundation.GetComponent<Building>().rubbleBorderKit[rubblePickerBR], spawnSpot, foundation.transform.rotation) as GameObject;
                 }
                 //place door
                 else if (i == doorPosition)
                 {
                     Vector3 spawnSpot = new Vector3((newestChunk.transform.position.x + CHUNKSIZE), newestChunk.transform.position.y, newestChunk.transform.position.z);
                     newestChunk = Instantiate(foundation.GetComponent<Building>().groundKit[0], spawnSpot, newestChunk.transform.rotation) as GameObject;
+                    int rubblePicker = Random.Range(0, foundation.GetComponent<Building>().rubbleKit.Count);
+                    spawnSpot = new Vector3((newestChunk.transform.position.x), newestChunk.transform.position.y - CHUNKSIZE, newestChunk.transform.position.z);
+                    rubble = Instantiate(foundation.GetComponent<Building>().rubbleKit[rubblePicker], spawnSpot, foundation.transform.rotation) as GameObject;
                 }
                 else
                 {
                     Vector3 spawnSpot = new Vector3((newestChunk.transform.position.x + CHUNKSIZE), newestChunk.transform.position.y, newestChunk.transform.position.z);
                     int groundPicker = Random.Range(1, foundation.GetComponent<Building>().groundKit.Count);
-                    newestChunk = Instantiate(foundation.GetComponent<Building>().groundKit[groundPicker], spawnSpot, newestChunk.transform.rotation) as GameObject;                    
+                    newestChunk = Instantiate(foundation.GetComponent<Building>().groundKit[groundPicker], spawnSpot, newestChunk.transform.rotation) as GameObject;
+                    int rubblePicker = Random.Range(0, foundation.GetComponent<Building>().rubbleKit.Count);
+                    spawnSpot = new Vector3((newestChunk.transform.position.x), newestChunk.transform.position.y - CHUNKSIZE, newestChunk.transform.position.z);
+                    rubble = Instantiate(foundation.GetComponent<Building>().rubbleKit[rubblePicker], spawnSpot, foundation.transform.rotation) as GameObject;
                 }
                 newestChunk.transform.parent = foundation.transform;
                 newestChunk.transform.parent.GetComponent<Building>().maxHealth += newestChunk.GetComponent<BuildingChunk>().maxHealth;
+                newestChunk.GetComponent<BuildingChunk>().building = newestChunk.transform.parent.GetComponent<Building>();
+                rubble.transform.parent = foundation.GetComponent<Building>().rubblePile.transform;
                 for (int j = 1; j <= buildingHeight; j++)
                 {
                     int randChunk = Random.Range(0, foundation.GetComponent<Building>().roofBorderKit.Count / 2);
@@ -369,6 +383,7 @@ public class CitySpawnManager : MonoBehaviour
                         }
                     }
                     lowerFloor.transform.parent = foundation.transform;
+                    lowerFloor.GetComponent<BuildingChunk>().building = lowerFloor.transform.parent.GetComponent<Building>();
                     lowerFloor.GetComponent<BuildingChunk>().floorLevel = j;
                     if (!lowerFloor.GetComponent<BuildingChunk>().isBorder && !lowerFloor.GetComponent<BuildingChunk>().isSky)
                     {

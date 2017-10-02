@@ -20,6 +20,8 @@ public class BuildingChunk : MonoBehaviour
     int timesNeigborsHit;
     bool statNumbers;
 
+    public Building building; 
+
     // Use this for initialization
     void Start ()
     {
@@ -38,6 +40,7 @@ public class BuildingChunk : MonoBehaviour
         neighbors[2].name = "North";
         neighbors[3].name = "South";
         statNumbers = (StatisticsNumbers.instance != null);
+        hasWindowEnemy = false;
     }
 	
 	// Update is called once per frame
@@ -120,6 +123,16 @@ public class BuildingChunk : MonoBehaviour
                 }
                 explodeDamage = true;
                 damageExplosionCounter = 0;
+            }
+            if (hasWindowEnemy && transform.childCount > 0)
+            {
+                foreach (Transform child in this.transform)
+                {
+                    if (child.GetComponent<EnemyParentScript>() != null)
+                    {
+                        child.GetComponent<EnemyParentScript>().Die();
+                    }
+                }
             }
         }
     }

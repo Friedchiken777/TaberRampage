@@ -16,6 +16,9 @@ public class MonsterController : MonoBehaviour
     const float DASHPOWERMODIFIER = 3f;
     const float SPEEDCHECKFREQUENCY = 0.5f;
 
+    [SerializeField]
+    CapsuleCollider capsuleCollider;
+
     CharacterController cc;                                         //reference to CharacterController
     Transform leftBottom, rightBottom, centerBottom, centerBottomBuilding;      //Location references for the left, right, bottom and bottom aligned with buildings of the character
 
@@ -47,6 +50,7 @@ public class MonsterController : MonoBehaviour
     float verticalMove = 0;
 
     float ccHeight;
+    float colliderHeight;
 
     bool statNumbers;
 
@@ -69,6 +73,7 @@ public class MonsterController : MonoBehaviour
         turnAround = true;
         dashModifier = 1f;
         ccHeight = cc.height;
+        colliderHeight = capsuleCollider.height;
         statNumbers = (StatisticsNumbers.instance != null);
         if (statNumbers)
         {
@@ -193,6 +198,7 @@ public class MonsterController : MonoBehaviour
             float zRot = (Mathf.Atan2(swipeDirection.x, -swipeDirection.y) * Mathf.Rad2Deg) - 90;
             this.transform.rotation = Quaternion.Lerp(Quaternion.identity, Quaternion.Euler(0,0, zRot), (dashTimer/DASHTIME) * 100);
             cc.height = 1;
+            capsuleCollider.height = 1.1f;
             if (dashTimer <= DASHTIME)
             {
                 horizontalMove = dashModifier * swipeDirection.x * (dashSpeed - ((dashSpeed/2) * dashTimer)) * Time.deltaTime;
@@ -248,6 +254,7 @@ public class MonsterController : MonoBehaviour
         if (AnimationSetter.instance.state == MonsterState.Fall || AnimationSetter.instance.state == MonsterState.Stun)
         {
             cc.height = ccHeight;
+            capsuleCollider.height = colliderHeight;
             transform.rotation = Quaternion.identity;
             FlipCharacter();
             if (fallspeed > GRAVITY)

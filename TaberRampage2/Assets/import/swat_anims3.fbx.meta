@@ -1,0 +1,817 @@
+fileFormatVersion: 2
+guid: 14de077ea037f7b48bb0656c32fa4eed
+timeCreated: 1504559686
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: arm_back
+    100002: arm_back1
+    100004: arm_front
+    100006: Arm_offset
+    100008: body
+    100010: crotch
+    100012: dead_swat
+    100014: Foot1_CTRL
+    100016: Foot1_CTRL1
+    100018: foot_bent
+    100020: foot_bent 1
+    100022: foot_flat
+    100024: foot_flat 1
+    100026: Gun_CTRL
+    100028: head
+    100030: head_offset
+    100032: hips
+    100034: knee_back
+    100036: knee_front
+    100038: mic
+    100040: Offset
+    100042: shield_back
+    100044: shield_bottom_bad
+    100046: shield_bottom_good
+    100048: Shield_CTRL
+    100050: shield_front1
+    100052: shield_mid
+    100054: shield_top_bad
+    100056: shield_top_good
+    100058: shin
+    100060: shin1
+    100062: //RootNode
+    100064: thigh_back
+    100066: thigh_front
+    100068: Torso_offset
+    400000: arm_back
+    400002: arm_back1
+    400004: arm_front
+    400006: Arm_offset
+    400008: body
+    400010: crotch
+    400012: dead_swat
+    400014: Foot1_CTRL
+    400016: Foot1_CTRL1
+    400018: foot_bent
+    400020: foot_bent 1
+    400022: foot_flat
+    400024: foot_flat 1
+    400026: Gun_CTRL
+    400028: head
+    400030: head_offset
+    400032: hips
+    400034: knee_back
+    400036: knee_front
+    400038: mic
+    400040: Offset
+    400042: shield_back
+    400044: shield_bottom_bad
+    400046: shield_bottom_good
+    400048: Shield_CTRL
+    400050: shield_front1
+    400052: shield_mid
+    400054: shield_top_bad
+    400056: shield_top_good
+    400058: shin
+    400060: shin1
+    400062: //RootNode
+    400064: thigh_back
+    400066: thigh_front
+    400068: Torso_offset
+    2300000: arm_back
+    2300002: arm_back1
+    2300004: arm_front
+    2300006: body
+    2300008: crotch
+    2300010: dead_swat
+    2300012: foot_bent
+    2300014: foot_bent 1
+    2300016: foot_flat
+    2300018: foot_flat 1
+    2300020: head
+    2300022: hips
+    2300024: knee_back
+    2300026: knee_front
+    2300028: mic
+    2300030: shield_back
+    2300032: shield_bottom_bad
+    2300034: shield_bottom_good
+    2300036: shield_mid
+    2300038: shield_top_bad
+    2300040: shield_top_good
+    2300042: shin
+    2300044: shin1
+    2300046: thigh_back
+    2300048: thigh_front
+    3300000: arm_back
+    3300002: arm_back1
+    3300004: arm_front
+    3300006: body
+    3300008: crotch
+    3300010: dead_swat
+    3300012: foot_bent
+    3300014: foot_bent 1
+    3300016: foot_flat
+    3300018: foot_flat 1
+    3300020: head
+    3300022: hips
+    3300024: knee_back
+    3300026: knee_front
+    3300028: mic
+    3300030: shield_back
+    3300032: shield_bottom_bad
+    3300034: shield_bottom_good
+    3300036: shield_mid
+    3300038: shield_top_bad
+    3300040: shield_top_good
+    3300042: shin
+    3300044: shin1
+    3300046: thigh_back
+    3300048: thigh_front
+    4300000: hips
+    4300002: thigh_back
+    4300004: knee_back
+    4300006: shin1
+    4300008: thigh_front
+    4300010: knee_front
+    4300012: shin
+    4300014: crotch
+    4300016: body
+    4300018: mic
+    4300020: arm_back1
+    4300022: shield_back
+    4300024: arm_back
+    4300026: shield_mid
+    4300028: shield_top_good
+    4300030: shield_top_bad
+    4300032: shield_bottom_good
+    4300034: shield_bottom_bad
+    4300036: arm_front
+    4300038: head
+    4300040: foot_flat
+    4300042: foot_bent
+    4300044: foot_flat
+    4300046: foot_bent
+    4300048: dead_swat
+    7400000: Idle
+    7400002: Fire
+    7400004: Tran2Walk
+    7400006: Walk
+    7400008: Die
+    7400010: Dead
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dead_swat
+        weight: 1
+      - path: Offset
+        weight: 1
+      - path: Offset/Foot1_CTRL
+        weight: 1
+      - path: Offset/Foot1_CTRL/foot_bent
+        weight: 1
+      - path: Offset/Foot1_CTRL/foot_flat
+        weight: 1
+      - path: Offset/Foot1_CTRL1
+        weight: 1
+      - path: Offset/Foot1_CTRL1/foot_bent 1
+        weight: 1
+      - path: Offset/Foot1_CTRL1/foot_flat 1
+        weight: 1
+      - path: Offset/hips
+        weight: 1
+      - path: Offset/hips/crotch
+        weight: 1
+      - path: Offset/hips/thigh_back
+        weight: 1
+      - path: Offset/hips/thigh_back/knee_back
+        weight: 1
+      - path: Offset/hips/thigh_back/shin1
+        weight: 1
+      - path: Offset/hips/thigh_front
+        weight: 1
+      - path: Offset/hips/thigh_front/knee_front
+        weight: 1
+      - path: Offset/hips/thigh_front/shin
+        weight: 1
+      - path: Offset/hips/Torso_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset/Gun_CTRL
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset/Gun_CTRL/arm_front
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/head_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/head_offset/head
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/mic
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/arm_back
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/arm_back1
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_back
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_bottom_bad
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_bottom_good
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_mid
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_top_bad
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_top_good
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Fire
+      takeName: Take 001
+      firstFrame: 20
+      lastFrame: 28
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dead_swat
+        weight: 1
+      - path: Offset
+        weight: 1
+      - path: Offset/Foot1_CTRL
+        weight: 1
+      - path: Offset/Foot1_CTRL/foot_bent
+        weight: 1
+      - path: Offset/Foot1_CTRL/foot_flat
+        weight: 1
+      - path: Offset/Foot1_CTRL1
+        weight: 1
+      - path: Offset/Foot1_CTRL1/foot_bent 1
+        weight: 1
+      - path: Offset/Foot1_CTRL1/foot_flat 1
+        weight: 1
+      - path: Offset/hips
+        weight: 1
+      - path: Offset/hips/crotch
+        weight: 1
+      - path: Offset/hips/thigh_back
+        weight: 1
+      - path: Offset/hips/thigh_back/knee_back
+        weight: 1
+      - path: Offset/hips/thigh_back/shin1
+        weight: 1
+      - path: Offset/hips/thigh_front
+        weight: 1
+      - path: Offset/hips/thigh_front/knee_front
+        weight: 1
+      - path: Offset/hips/thigh_front/shin
+        weight: 1
+      - path: Offset/hips/Torso_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset/Gun_CTRL
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset/Gun_CTRL/arm_front
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/head_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/head_offset/head
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/mic
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/arm_back
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/arm_back1
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_back
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_bottom_bad
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_bottom_good
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_mid
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_top_bad
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_top_good
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Tran2Walk
+      takeName: Take 001
+      firstFrame: 28
+      lastFrame: 32
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dead_swat
+        weight: 1
+      - path: Offset
+        weight: 1
+      - path: Offset/Foot1_CTRL
+        weight: 1
+      - path: Offset/Foot1_CTRL/foot_bent
+        weight: 1
+      - path: Offset/Foot1_CTRL/foot_flat
+        weight: 1
+      - path: Offset/Foot1_CTRL1
+        weight: 1
+      - path: Offset/Foot1_CTRL1/foot_bent 1
+        weight: 1
+      - path: Offset/Foot1_CTRL1/foot_flat 1
+        weight: 1
+      - path: Offset/hips
+        weight: 1
+      - path: Offset/hips/crotch
+        weight: 1
+      - path: Offset/hips/thigh_back
+        weight: 1
+      - path: Offset/hips/thigh_back/knee_back
+        weight: 1
+      - path: Offset/hips/thigh_back/shin1
+        weight: 1
+      - path: Offset/hips/thigh_front
+        weight: 1
+      - path: Offset/hips/thigh_front/knee_front
+        weight: 1
+      - path: Offset/hips/thigh_front/shin
+        weight: 1
+      - path: Offset/hips/Torso_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset/Gun_CTRL
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset/Gun_CTRL/arm_front
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/head_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/head_offset/head
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/mic
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/arm_back
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/arm_back1
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_back
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_bottom_bad
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_bottom_good
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_mid
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_top_bad
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_top_good
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk
+      takeName: Take 001
+      firstFrame: 32
+      lastFrame: 62
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dead_swat
+        weight: 1
+      - path: Offset
+        weight: 1
+      - path: Offset/Foot1_CTRL
+        weight: 1
+      - path: Offset/Foot1_CTRL/foot_bent
+        weight: 1
+      - path: Offset/Foot1_CTRL/foot_flat
+        weight: 1
+      - path: Offset/Foot1_CTRL1
+        weight: 1
+      - path: Offset/Foot1_CTRL1/foot_bent 1
+        weight: 1
+      - path: Offset/Foot1_CTRL1/foot_flat 1
+        weight: 1
+      - path: Offset/hips
+        weight: 1
+      - path: Offset/hips/crotch
+        weight: 1
+      - path: Offset/hips/thigh_back
+        weight: 1
+      - path: Offset/hips/thigh_back/knee_back
+        weight: 1
+      - path: Offset/hips/thigh_back/shin1
+        weight: 1
+      - path: Offset/hips/thigh_front
+        weight: 1
+      - path: Offset/hips/thigh_front/knee_front
+        weight: 1
+      - path: Offset/hips/thigh_front/shin
+        weight: 1
+      - path: Offset/hips/Torso_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset/Gun_CTRL
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset/Gun_CTRL/arm_front
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/head_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/head_offset/head
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/mic
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/arm_back
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/arm_back1
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_back
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_bottom_bad
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_bottom_good
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_mid
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_top_bad
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_top_good
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Die
+      takeName: Take 001
+      firstFrame: 70
+      lastFrame: 110
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dead_swat
+        weight: 1
+      - path: Offset
+        weight: 1
+      - path: Offset/Foot1_CTRL
+        weight: 1
+      - path: Offset/Foot1_CTRL/foot_bent
+        weight: 1
+      - path: Offset/Foot1_CTRL/foot_flat
+        weight: 1
+      - path: Offset/Foot1_CTRL1
+        weight: 1
+      - path: Offset/Foot1_CTRL1/foot_bent 1
+        weight: 1
+      - path: Offset/Foot1_CTRL1/foot_flat 1
+        weight: 1
+      - path: Offset/hips
+        weight: 1
+      - path: Offset/hips/crotch
+        weight: 1
+      - path: Offset/hips/thigh_back
+        weight: 1
+      - path: Offset/hips/thigh_back/knee_back
+        weight: 1
+      - path: Offset/hips/thigh_back/shin1
+        weight: 1
+      - path: Offset/hips/thigh_front
+        weight: 1
+      - path: Offset/hips/thigh_front/knee_front
+        weight: 1
+      - path: Offset/hips/thigh_front/shin
+        weight: 1
+      - path: Offset/hips/Torso_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset/Gun_CTRL
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset/Gun_CTRL/arm_front
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/head_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/head_offset/head
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/mic
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/arm_back
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/arm_back1
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_back
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_bottom_bad
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_bottom_good
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_mid
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_top_bad
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_top_good
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Dead
+      takeName: Take 001
+      firstFrame: 110
+      lastFrame: 110
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dead_swat
+        weight: 1
+      - path: Offset
+        weight: 1
+      - path: Offset/Foot1_CTRL
+        weight: 1
+      - path: Offset/Foot1_CTRL/foot_bent
+        weight: 1
+      - path: Offset/Foot1_CTRL/foot_flat
+        weight: 1
+      - path: Offset/Foot1_CTRL1
+        weight: 1
+      - path: Offset/Foot1_CTRL1/foot_bent 1
+        weight: 1
+      - path: Offset/Foot1_CTRL1/foot_flat 1
+        weight: 1
+      - path: Offset/hips
+        weight: 1
+      - path: Offset/hips/crotch
+        weight: 1
+      - path: Offset/hips/thigh_back
+        weight: 1
+      - path: Offset/hips/thigh_back/knee_back
+        weight: 1
+      - path: Offset/hips/thigh_back/shin1
+        weight: 1
+      - path: Offset/hips/thigh_front
+        weight: 1
+      - path: Offset/hips/thigh_front/knee_front
+        weight: 1
+      - path: Offset/hips/thigh_front/shin
+        weight: 1
+      - path: Offset/hips/Torso_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset/Gun_CTRL
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Arm_offset/Gun_CTRL/arm_front
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/head_offset
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/head_offset/head
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/mic
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/arm_back
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/arm_back1
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_back
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_bottom_bad
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_bottom_good
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_mid
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_top_bad
+        weight: 1
+      - path: Offset/hips/Torso_offset/body/Shield_CTRL/shield_front1/shield_top_good
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

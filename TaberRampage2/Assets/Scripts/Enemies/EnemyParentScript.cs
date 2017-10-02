@@ -7,17 +7,17 @@ public class EnemyParentScript : MonoBehaviour
     protected const float SHOTSPREAD = 1f;
 
     [SerializeField]
-    protected float maxHealth, walkSpeed, runSpeed, boldness, foodValue, stunDuration, stunForce, turnDelay, terrorValue, deathCooldown;
+    protected float maxHealth, walkSpeed, runSpeed, boldness, foodValue, turnDelay, terrorValue, deathCooldown;
 
     [SerializeField]
     protected float fireRate;
     protected float shootTimer;
 
     [SerializeField]
-    protected bool hasShield, hasShotgun;
+    protected bool hasShotgun;
 
     [SerializeField]
-    protected GameObject bulletPrfab, mainBody, deathBody;
+    protected GameObject bulletPrfab, mainBody, deathBody, shield;
 
     [SerializeField]
     protected Collider hitbox;
@@ -60,6 +60,7 @@ public class EnemyParentScript : MonoBehaviour
         hasSpriteRenderer = GetComponent<SpriteRenderer>() != null;
         startingValues = transform.localScale;
         SetAnimator();
+        attacked = false;
     }
 
 	
@@ -97,12 +98,7 @@ public class EnemyParentScript : MonoBehaviour
             {
                 AnimationSetter.instance.SetAttackState();
                 currentHealth--;
-                if (hasShield && currentHealth > 0)
-                {
-                    col.GetComponent<MonsterController>().StunPlayerH(stunDuration, stunForce);
-                    gameObject.GetComponent<StatePartSwap>().TriggerSwap();
-                }
-                else if (currentHealth <= 0)
+                if (currentHealth <= 0)
                 {
                     col.GetComponent<MonsterController>().HealDamage(foodValue);
                     TerrorManager.instance.AddTerror(terrorValue);
@@ -117,19 +113,8 @@ public class EnemyParentScript : MonoBehaviour
                             }
                         }
                         statNumbers = false;
-                    }
-                    Destroy(this.gameObject, deathCooldown);
-                    dead = true;
-                    if (mainBody != null && deathBody != null)
-                    {
-                        mainBody.SetActive(false);
-                        deathBody.SetActive(true);
-                        hitbox.enabled = false;
-                        if (gameObject.GetComponent<CharacterController>() != null)
-                        {
-                            gameObject.GetComponent<CharacterController>().enabled = false;
-                        }
-                    }
+                    }                    
+                    Die();
                 }
             }
             attacked = true;
@@ -141,6 +126,26 @@ public class EnemyParentScript : MonoBehaviour
         if (transform.position.x < monster.transform.position.x - CLEANUPDISTANCE || transform.position.x > monster.transform.position.x + CLEANUPDISTANCE)
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(this.gameObject, deathCooldown);
+        dead = true;        
+        if (mainBody != null && deathBody != null)
+        {
+            mainBody.SetActive(false);
+            deathBody.SetActive(true);
+            hitbox.enabled = false;
+            if (gameObject.GetComponent<CharacterController>() != null)
+            {
+                gameObject.GetComponent<CharacterController>().enabled = false;
+            }
+            if (shield != null)
+            {
+                Destroy(shield);
+            }
         }
     }
 
@@ -267,15 +272,17 @@ public class EnemyParentScript : MonoBehaviour
         shootTimer = 0;
     }
 
-    public void IsIdleTrue()
+    public bool GetAttacked()
     {
-        idle = true;
+        return attacked;
     }
 
-    public void IsIdleFalse()
+    public void SetAttacked(bool a)
     {
-        idle = false;
+        attacked = a;
     }
+
+
 
     public enum EnemySpawnTypes
     {

@@ -156,67 +156,64 @@ public class EnemySpawnManager : MonoBehaviour
     void SpawnWindowEnemy(GameObject enemy, bool roof)
     {
         testChunk.Clear();
-        bool processing = true;
         Collider[] col = Physics.OverlapSphere(player.position + playerSpeedOffset, SPAWNRADIUS);
 
         for (int i = 0; i < col.Length; i++)
         {
             if (col[i].GetComponent<BuildingChunk>() != null)
             {
+                //check if roof enemy
                 if (roof && col[i].GetComponent<BuildingChunk>().isSky)
                 {
                     testChunk.Add(col[i].GetComponent<BuildingChunk>());
                 }
-                else if (!roof && !col[i].GetComponent<BuildingChunk>().isBorder && !col[i].GetComponent<BuildingChunk>().isDoor && !col[i].GetComponent<BuildingChunk>().isSky)
+                //check other requirements for window enemy
+                else if (!roof &&                                                                                                   //isn't on the roof
+                            !col[i].GetComponent<BuildingChunk>().isBorder &&                                                       //isn't a border
+                            !col[i].GetComponent<BuildingChunk>().isDoor &&                                                         //isn't a door
+                            !col[i].GetComponent<BuildingChunk>().isSky &&                                                          //isn't sky
+                            col[i].GetComponent<BuildingChunk>().floorLevel > 0 &&                                                  //above ground floor
+                            !col[i].GetComponent<BuildingChunk>().hasSign &&                                                        //doesn't have a sign or AC
+                            !col[i].GetComponent<BuildingChunk>().hasWindowEnemy &&                                                 //hasn't already spwaned an enemy
+                            col[i].GetComponent<BuildingChunk>().currentHealth == col[i].GetComponent<BuildingChunk>().maxHealth    //hasn't lost health
+                        )
                 {
                     testChunk.Add(col[i].GetComponent<BuildingChunk>());
                 }
             }
         }
-        if (testChunk.Count > 0)
+        int pos = Random.Range(0, testChunk.Count);
+        if (testChunk.Count > 0 && testChunk[pos] != null)
         {
-            int pos = 0;
-            while (processing)
+            //determin adjustment to window spawn
+            Vector3 zOffset = Vector3.zero;
+            if (testChunk[pos].building.alternateXValuesforWindowEnemies.Length > 0)
             {
-                pos = Random.Range(0, testChunk.Count);
+                int rand = Random.Range(0, testChunk[pos].building.alternateXValuesforWindowEnemies.Length);
+                zOffset = new Vector3(testChunk[pos].transform.position.x + testChunk[pos].building.alternateXValuesforWindowEnemies[rand], testChunk[pos].transform.position.y + testChunk[pos].building.windowEnemyOffset.y, ZLAYER);
+            }
+            else
+            {
+                zOffset = new Vector3(testChunk[pos].transform.position.x + testChunk[pos].building.windowEnemyOffset.x, testChunk[pos].transform.position.y + testChunk[pos].building.windowEnemyOffset.y, ZLAYER);
+            }
 
-                if (!testChunk[pos].hasWindowEnemy && testChunk[pos].currentHealth == testChunk[pos].maxHealth && !testChunk[pos].hasSign)
+            if (testChunk[pos].windowOpenS != null)
+            {
+                testChunk[pos].gameObject.GetComponent<SpriteRenderer>().sprite = testChunk[pos].windowOpenS;
+            }
+            GameObject enemyTemp = Instantiate(enemy, zOffset, testChunk[pos].transform.rotation) as GameObject;
+            testChunk[pos].hasWindowEnemy = true;
+            enemyTemp.transform.parent = testChunk[pos].transform;
+            if (statNumbers)
+            {
+                StatisticsNumbers.instance.ModifyTotalEnemiesSpawned();
+                if (roof)
                 {
-                    processing = false;
+                    StatisticsNumbers.instance.ModifyTotalRoofEnemiesSpawned();
                 }
-                //invalid window to spawn
                 else
                 {
-                    testChunk.Remove(testChunk[pos]);
-                }
-
-                if (testChunk.Count == 0)
-                {
-                    //print("No Spawnable Window");
-                    return;
-                }
-            }
-            if (testChunk.Count > 0 && testChunk[pos] != null)
-            {
-                Vector3 zOffset = new Vector3(testChunk[pos].transform.position.x, testChunk[pos].transform.position.y, ZLAYER);
-                if (testChunk[pos].windowOpenS != null)
-                {
-                    testChunk[pos].gameObject.GetComponent<SpriteRenderer>().sprite = testChunk[pos].windowOpenS;
-                }
-                GameObject enemyTemp = Instantiate(enemy, zOffset, testChunk[pos].transform.rotation) as GameObject;
-                testChunk[pos].hasWindowEnemy = true;
-                enemyTemp.transform.parent = testChunk[pos].transform;
-                if (statNumbers)
-                {
-                    StatisticsNumbers.instance.ModifyTotalEnemiesSpawned();
-                    if (roof)
-                    {
-                        StatisticsNumbers.instance.ModifyTotalRoofEnemiesSpawned();
-                    }
-                    else
-                    {
-                        StatisticsNumbers.instance.ModifyTotalWindowEnemiesSpawned();
-                    }
+                    StatisticsNumbers.instance.ModifyTotalWindowEnemiesSpawned();
                 }
             }
         }
